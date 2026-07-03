@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+<title>전홍기 ♥ 지세리 결혼합니다</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600&family=Noto+Sans+KR:wght@300;400;500&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #FAF6F0;
+    --blush: #E8C4B0;
+    --gold: #B8936A;
+    --deep: #3D2B1F;
+    --text: #5A3E30;
+    --light: #F2EBE3;
+    --white: #FDFAF7;
+    --muted: #9A7B6A;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'Noto Serif KR', serif;
+    max-width: 480px;
+    margin: 0 auto;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* ── Cover ── */
+  .cover {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 60px;
+  }
+
+  .cover-img {
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80') center/cover no-repeat;
+    filter: brightness(0.72) saturate(0.85);
+  }
+
+  .cover-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, rgba(40, 20, 10, 0.55) 100%);
+  }
+
+  .cover-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: #FAF0E8;
+  }
+
+  .cover-date {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.35em;
+    font-size: 13px;
+    color: rgba(250,240,232,0.8);
+    margin-bottom: 20px;
+  }
+
+  .cover-names {
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    line-height: 1.4;
+    margin-bottom: 16px;
+  }
+
+  .cover-heart {
+    font-size: 18px;
+    opacity: 0.85;
+    margin: 0 8px;
+  }
+
+  .cover-venue {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: rgba(250,240,232,0.7);
+    margin-bottom: 40px;
+  }
+
+  .scroll-hint {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: rgba(250,240,232,0.55);
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
+
+  /* ── Sections ── */
+  section {
+    padding: 56px 32px;
+    border-bottom: 1px solid rgba(184, 147, 106, 0.18);
+  }
+
+  .section-label {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  /* ── Invitation ── */
+  .invitation-text {
+    text-align: center;
+    line-height: 2.2;
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--text);
+    margin-bottom: 48px;
+    word-break: keep-all;
+  }
+
+  .couple-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .person {
+    text-align: center;
+    flex: 1;
+  }
+
+  .person-parents {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 10px;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+
+  .person-name {
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: var(--deep);
+  }
+
+  .couple-divider {
+    font-size: 20px;
+    color: var(--blush);
+    padding: 0 20px;
+    flex-shrink: 0;
+  }
+
+  /* ── Contact ── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .contact-card {
+    background: var(--white);
+    border: 1px solid rgba(184, 147, 106, 0.2);
+    border-radius: 12px;
+    padding: 20px 16px;
+    text-align: center;
+  }
+
+  .contact-role {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .contact-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--deep);
+    margin-bottom: 14px;
+  }
+
+  .contact-btns {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .btn-contact {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 7px 14px;
+    border-radius: 20px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 12px;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 1px solid rgba(184, 147, 106, 0.35);
+    color: var(--text);
+    background: transparent;
+  }
+
+  .btn-contact:hover { background: var(--light); }
+
+  /* ── Gallery ── */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .gallery-item {
+    aspect-ratio: 1;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+  }
+
+  .gallery-item:hover img { transform: scale(1.05); }
+
+  .gallery-main {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  /* ── Schedule ── */
+  .schedule-card {
+    background: var(--white);
+    border: 1px solid rgba(184, 147, 106, 0.2);
+    border-radius: 16px;
+    padding: 32px 28px;
+    text-align: center;
+  }
+
+  .schedule-day {
+    font-size: 52px;
+    font-weight: 600;
+    color: var(--deep);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .schedule-month {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .schedule-divider {
+    width: 32px;
+    height: 1px;
+    background: var(--blush);
+    margin: 20px auto;
+  }
+
+  .schedule-detail {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 2;
+    color: var(--text);
+  }
+
+  .calendar-btns {
+    display: flex;
+    gap: 10px;
+    margin-top: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-cal {
+    padding: 9px 18px;
+    border-radius: 20px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 12px;
+    text-decoration: none;
+    border: 1px solid rgba(184, 147, 106, 0.35);
+    color: var(--text);
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .btn-cal:hover { background: var(--light); }
+
+  /* ── Location ── */
+  .map-placeholder {
+    background: var(--light);
+    border-radius: 12px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    border: 1px solid rgba(184, 147, 106, 0.2);
+    color: var(--muted);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 13px;
+  }
+
+  .address-block {
+    background: var(--white);
+    border: 1px solid rgba(184, 147, 106, 0.2);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.9;
+    color: var(--text);
+  }
+
+  .address-block strong {
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--deep);
+    margin-bottom: 6px;
+  }
+
+  .map-btns {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+
+  .btn-map {
+    padding: 9px 16px;
+    border-radius: 20px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 12px;
+    text-decoration: none;
+    border: 1px solid rgba(184, 147, 106, 0.35);
+    color: var(--text);
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .btn-map:hover { background: var(--light); }
+
+  .transport-item {
+    margin-bottom: 20px;
+  }
+
+  .transport-label {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .transport-desc {
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.9;
+    color: var(--muted);
+  }
+
+  /* ── Account ── */
+  .account-intro {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 2;
+    color: var(--muted);
+    margin-bottom: 32px;
+    word-break: keep-all;
+  }
+
+  .account-group {
+    margin-bottom: 24px;
+  }
+
+  .account-group-label {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(184, 147, 106, 0.18);
+  }
+
+  .account-row {
+    display: flex;
+    align-items: center;
+    background: var(--white);
+    border: 1px solid rgba(184, 147, 106, 0.2);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 8px;
+  }
+
+  .account-bank {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--muted);
+    font-family: 'Noto Sans KR', sans-serif;
+    min-width: 80px;
+  }
+
+  .account-info {
+    flex: 1;
+  }
+
+  .account-number {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--deep);
+    letter-spacing: 0.05em;
+  }
+
+  .account-holder {
+    font-size: 12px;
+    color: var(--muted);
+    font-family: 'Noto Sans KR', sans-serif;
+    margin-top: 2px;
+  }
+
+  .btn-copy {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 12px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(184, 147, 106, 0.35);
+    color: var(--text);
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.2s;
+    flex-shrink: 0;
+  }
+
+  .btn-copy:hover { background: var(--light); }
+  .btn-copy.copied { color: var(--gold); border-color: var(--gold); }
+
+  /* ── Share ── */
+  .share-intro {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--muted);
+    margin-bottom: 28px;
+    word-break: keep-all;
+    line-height: 1.9;
+  }
+
+  .share-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn-share {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px;
+    border-radius: 12px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.2s;
+    text-align: center;
+  }
+
+  .btn-share:hover { opacity: 0.88; }
+
+  .btn-kakao {
+    background: #FEE500;
+    color: #3A1D1D;
+  }
+
+  .btn-link-copy {
+    background: var(--white);
+    color: var(--text);
+    border: 1px solid rgba(184, 147, 106, 0.3);
+  }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    padding: 48px 32px 64px;
+    background: var(--deep);
+    color: rgba(250,240,232,0.6);
+    font-family: 'Noto Serif KR', serif;
+  }
+
+  .footer-names {
+    font-size: 20px;
+    font-weight: 400;
+    color: rgba(250,240,232,0.9);
+    letter-spacing: 0.15em;
+    margin-bottom: 12px;
+  }
+
+  .footer-date {
+    font-size: 13px;
+    font-weight: 300;
+    margin-bottom: 6px;
+  }
+
+  .footer-venue {
+    font-size: 12px;
+    font-weight: 300;
+    opacity: 0.5;
+  }
+
+  /* ── Music toggle ── */
+  .music-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(61, 43, 31, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(250, 240, 232, 0.28);
+    color: rgba(250, 240, 232, 0.92);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(61, 43, 31, 0.15);
+    transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, transform 0.25s ease;
+  }
+
+  .music-btn:hover {
+    background: rgba(61, 43, 31, 0.72);
+    transform: scale(1.06);
+  }
+
+  .music-btn.playing {
+    background: rgba(184, 147, 106, 0.72);
+    border-color: rgba(250, 240, 232, 0.42);
+    box-shadow: 0 4px 20px rgba(184, 147, 106, 0.32);
+  }
+
+  .music-btn svg {
+    width: 22px;
+    height: 22px;
+    overflow: visible;
+  }
+
+  .music-arc {
+    opacity: 0.28;
+    transition: opacity 0.35s ease;
+  }
+
+  .music-btn.playing .music-arc {
+    opacity: 0.95;
+  }
+
+  .music-btn.playing .arc-1 {
+    animation: musicArc 1.4s ease-in-out infinite;
+  }
+
+  .music-btn.playing .arc-2 {
+    animation: musicArc 1.4s ease-in-out 0.25s infinite;
+  }
+
+  .music-btn.playing .music-note-head {
+    animation: noteGlow 1.4s ease-in-out infinite;
+  }
+
+  @keyframes musicArc {
+    0%, 100% { opacity: 0.35; }
+    50% { opacity: 1; }
+  }
+
+  @keyframes noteGlow {
+    0%, 100% { opacity: 0.85; }
+    50% { opacity: 1; }
+  }
+
+  /* ── Lightbox ── */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(30, 15, 8, 0.92);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lightbox.open { display: flex; }
+
+  .lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: rgba(250,240,232,0.7);
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  /* ── Scroll reveal ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Toast ── */
+  .toast {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--deep);
+    color: rgba(250,240,232,0.9);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 13px;
+    padding: 12px 24px;
+    border-radius: 24px;
+    z-index: 300;
+    transition: transform 0.3s ease;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .toast.show { transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- Music button -->
+<button class="music-btn" id="musicBtn" aria-label="배경음악 켜기/끄기">
+  <svg id="musicIcon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M11.5 6.5v13.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    <ellipse class="music-note-head" cx="8.4" cy="21.8" rx="3.3" ry="2.7" transform="rotate(-24 8.4 21.8)" fill="currentColor"/>
+    <path d="M11.5 6.5c2.2-.6 4.2.4 5.4 2.2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+    <path class="music-arc arc-1" d="M17.5 12.5c2 1.5 3.2 3.6 3.2 6.2s-1.2 4.7-3.2 6.2" stroke="currentColor" stroke-width="1.35" stroke-linecap="round"/>
+    <path class="music-arc arc-2" d="M21.8 9.2c3.2 2.3 5.2 5.4 5.2 9.5s-2 7.2-5.2 9.5" stroke="currentColor" stroke-width="1.35" stroke-linecap="round"/>
+  </svg>
+</button>
+
+<audio id="bgm" loop>
+  <!-- 무료 웨딩 BGM - 나중에 원하는 파일로 교체 -->
+  <source src="https://cdn.pixabay.com/audio/2026/02/16/audio_d7b2fbfb23.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Cover -->
+<section class="cover">
+  <div class="cover-img"></div>
+  <div class="cover-overlay"></div>
+  <div class="cover-content">
+    <p class="cover-date">2027 · 01 · 10</p>
+    <h1 class="cover-names">전홍기<span class="cover-heart">♥</span>지세리</h1>
+    <p class="cover-venue">라루체웨딩홀 루아르홀</p>
+    <p class="scroll-hint">SCROLL</p>
+  </div>
+</section>
+
+<!-- Invitation -->
+<section id="invitation" class="reveal">
+  <p class="section-label">INVITATION</p>
+  <p class="invitation-text">
+    서로가 마주보며 다져온 사랑을<br>
+    이제 함께 한 곳을 바라보며<br>
+    걸어가고자 합니다.<br><br>
+    저희 두 사람이 사랑을 약속하는<br>
+    첫 걸음을 함께해 주세요.
+  </p>
+
+  <div class="couple-block">
+    <div class="person">
+      <p class="person-parents">전유기 · 박정금의 아들</p>
+      <p class="person-name">전 홍 기</p>
+    </div>
+    <div class="couple-divider">♥</div>
+    <div class="person">
+      <p class="person-parents">지종선 · 이서진의 딸</p>
+      <p class="person-name">지 세 리</p>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="reveal">
+  <p class="section-label">CONTACT</p>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <p class="contact-role">신랑</p>
+      <p class="contact-name">전홍기</p>
+      <div class="contact-btns">
+        <a href="tel:010-8618-8603" class="btn-contact">📞 전화</a>
+        <a href="sms:010-8618-8603" class="btn-contact">💬 문자</a>
+      </div>
+    </div>
+    <div class="contact-card">
+      <p class="contact-role">신부</p>
+      <p class="contact-name">지세리</p>
+      <div class="contact-btns">
+        <a href="tel:010-4868-7897" class="btn-contact">📞 전화</a>
+        <a href="sms:010-4868-7897" class="btn-contact">💬 문자</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section id="gallery" class="reveal">
+  <p class="section-label">GALLERY</p>
+  <div class="gallery-grid" id="galleryGrid"></div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<!-- Schedule -->
+<section id="schedule" class="reveal">
+  <p class="section-label">SCHEDULE</p>
+  <div class="schedule-card">
+    <p class="schedule-month">JAN</p>
+    <p class="schedule-day">10</p>
+    <div class="schedule-divider"></div>
+    <p class="schedule-detail">
+      2027년 01월 10일 일요일 오후 1시<br>
+      라루체웨딩홀 루아르홀
+    </p>
+    <div class="calendar-btns">
+      <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=%EC%98%A4%ED%9B%84%201%EC%8B%9C%20%EC%84%B8%EB%A6%AC%20%ED%99%8D%EA%B8%B0%20%EA%B2%B0%ED%98%BC%EC%8B%9D&dates=20270110T130000/20270110T140000&ctz=Asia%2FSeoul" class="btn-cal">📅 구글 캘린더</a>
+      <a href="data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0APRODID:-//Event//EN%0ABEGIN:VEVENT%0AUID:20270110T130000-kst@event%0ADTSTART;TZID=Asia/Seoul:20270110T130000%0ADTEND;TZID=Asia/Seoul:20270110T140000%0ASUMMARY:%EC%98%A4%ED%9B%84%201%EC%8B%9C%20%EC%84%B8%EB%A6%AC%20%ED%99%8D%EA%B8%B0%20%EA%B2%B0%ED%98%BC%EC%8B%9D%0AEND:VEVENT%0AEND:VCALENDAR" class="btn-cal">🍎 아이폰 캘린더</a>
+    </div>
+  </div>
+</section>
+
+<!-- Location -->
+<section id="location" class="reveal">
+  <p class="section-label">LOCATION</p>
+  <div class="map-placeholder">
+    <iframe src="https://map.kakao.com/link/embed/YOUR_KAKAO_MAP_SHARE_LINK" allowfullscreen></iframe>
+  </div>
+  <div class="address-block">
+    <strong>라루체웨딩홀 루아르홀</strong>
+    서울특별시 중구 퇴계로18길 46<br>
+    라루체웨딩홀 4층 루아르홀
+  </div>
+  <div class="map-btns">
+    <a href="#" class="btn-map">카카오맵</a>
+    <a href="https://naver.me/IgJGrKmE" class="btn-map">네이버지도</a>
+    <a href="#" class="btn-map">T맵</a>
+  </div>
+
+  <div class="transport-item">
+    <p class="transport-label">🚇 지하철</p>
+    <p class="transport-desc">4호선 명동역 4번 출구에서 도보 5분</p>
+  </div>
+  <div class="transport-item">
+    <p class="transport-label">🚌 버스</p>
+    <p class="transport-desc">간선버스 105, 463 명동역 7번 출구 하차</p>
+  </div>
+  <div class="transport-item">
+    <p class="transport-label">🚗 자가용</p>
+    <p class="transport-desc">라루체웨딩홀 주차장 이용 가능 (2시간 무료)<br>내비게이션 '라루체웨딩홀' 검색</p>
+  </div>
+</section>
+
+<!-- Account -->
+<section id="account" class="reveal">
+  <p class="section-label">ACCOUNT</p>
+  <p class="account-intro">
+    마음만으로도 충분합니다.<br>
+    참석이 어려우신 분들을 위해<br>
+    계좌 정보를 안내드립니다.
+  </p>
+
+  <div class="account-group">
+    <p class="account-group-label">신랑측</p>
+    <div class="account-row">
+      <span class="account-bank">국민은행</span>
+      <div class="account-info">
+        <p class="account-number">123-456-789012</p>
+        <p class="account-holder">전홍기</p>
+      </div>
+      <button class="btn-copy" onclick="copyAccount('123-456-789012', this)">복사</button>
+    </div>
+    <div class="account-row">
+      <span class="account-bank">신한은행</span>
+      <div class="account-info">
+        <p class="account-number">110-234-567890</p>
+        <p class="account-holder">전유기 (신랑 아버지)</p>
+      </div>
+      <button class="btn-copy" onclick="copyAccount('110-234-567890', this)">복사</button>
+    </div>
+  </div>
+
+  <div class="account-group">
+    <p class="account-group-label">신부측</p>
+    <div class="account-row">
+      <span class="account-bank">카카오뱅크</span>
+      <div class="account-info">
+        <p class="account-number">3333-12-3837147</p>
+        <p class="account-holder">지세리</p>
+      </div>
+      <button class="btn-copy" onclick="copyAccount('1002-345-678901', this)">복사</button>
+    </div>
+    <div class="account-row">
+      <span class="account-bank">농협은행</span>
+      <div class="account-info">
+        <p class="account-number">301-0123-4567-81</p>
+        <p class="account-holder">지종선 (신부 아버지)</p>
+      </div>
+      <button class="btn-copy" onclick="copyAccount('301-0123-4567-81', this)">복사</button>
+    </div>
+  </div>
+</section>
+
+<!-- Share -->
+<section id="share" class="reveal">
+  <p class="section-label">SHARE</p>
+  <p class="share-intro">
+    소중한 분들께 청첩장을 전해주세요
+  </p>
+  <div class="share-btns">
+    <button class="btn-share btn-kakao" onclick="shareKakao()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.477 3 2 6.477 2 10.727c0 2.67 1.46 5.03 3.686 6.508L4.68 21l4.26-2.2c.996.274 2.055.422 3.06.422 5.523 0 10-3.477 10-7.773C22 6.477 17.523 3 12 3z"/></svg>
+      카카오톡으로 공유하기
+    </button>
+    <button class="btn-share btn-link-copy" onclick="copyLink()">
+      🔗 링크 복사하기
+    </button>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <p class="footer-names">전홍기 ♥ 지세리</p>
+  <p class="footer-date">2027년 01월 10일 일요일 오후 1시</p>
+  <p class="footer-venue">라루체웨딩홀 루아르홀</p>
+</footer>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+  // ── 갤러리 사진 목록 (여기에만 추가/수정) ──
+  const GALLERY_IMAGES = [
+    { src: 'https://lh3.googleusercontent.com/d/1WzRZP1EvCdXl3J1pGTrH9Ey3LuM9T6or?w=800&q=80', alt: '웨딩 사진 1' },
+    /*{ src: 'https://lh3.googleusercontent.com/d/1zK5xbgCoYOTNa--_aL75DBLtIyMFtDqa?w=800&q=80', alt: '웨딩 사진 2' },*/
+    { src: 'https://lh3.googleusercontent.com/d/1-iriXLZ6DlfwsQEjeT0EuPrj5Nv7SY05?w=800&q=80', alt: '웨딩 사진 3' },
+    { src: 'https://lh3.googleusercontent.com/d/1dUBfeqycsPjDY9Nmbyoq5_j64TO3GplL?w=800&q=80', alt: '웨딩 사진 4' },
+    { src: 'https://lh3.googleusercontent.com/d/1zr1hEFfKp73Bpi2rGOeTXyMnwdeDz_1f?w=800&q=80', alt: '웨딩 사진 5' },
+    { src: 'https://lh3.googleusercontent.com/d/12ZFTLxHiFbjIFfh5akuQTZbEIui2bJVT?w=800&q=80', alt: '웨딩 사진 6' },
+    { src: 'https://lh3.googleusercontent.com/d/1jm5CTZGCwUNZTIGaQd_VpaLzeU_jO2xY?w=800&q=80', alt: '웨딩 사진 7' },
+    { src: 'https://lh3.googleusercontent.com/d/1I2WbV7yGlHA0EmGwQMekHjBrRbbG7x9i?w=800&q=80', alt: '웨딩 사진 8' },
+    { src: 'https://lh3.googleusercontent.com/d/1DIKScZwTQtRQj1Zlq7as203MTMQhgwyd?w=800&q=80', alt: '웨딩 사진 9' },
+    { src: 'https://lh3.googleusercontent.com/d/1NsMsYcDxvMfmP_xIonGLfJIOoV6CwiqZ?w=800&q=80', alt: '웨딩 사진 10' },
+    { src: 'https://lh3.googleusercontent.com/d/1abP3GmZxxzQxTMVRcG8rNfQpP9-6idGB?w=800&q=80', alt: '웨딩 사진 11' },
+    { src: 'https://lh3.googleusercontent.com/d/10FWS0Hnr6_cnmdRmz66rjWQlZAzo0nRh?w=800&q=80', alt: '웨딩 사진 12' },
+    { src: 'https://lh3.googleusercontent.com/d/1z-6LCRhOxnpkCm4r3XGxfu_rn6WKepb6?w=800&q=80', alt: '웨딩 사진 13' },
+    { src: 'https://lh3.googleusercontent.com/d/1dwta19GbqiCVVsrlInTRpRaTS1AqossI?w=800&q=80', alt: '웨딩 사진 14' }, 
+    { src: 'https://lh3.googleusercontent.com/d/1yXfGaa_85nXr2GqjL302POdoBV46vrku?w=800&q=80', alt: '웨딩 사진 15' },
+    { src: 'https://lh3.googleusercontent.com/d/1xp5o4SzeHYABo-VgwBi6l4nXSoYR2NX9?w=800&q=80', alt: '웨딩 사진 16' },
+    { src: 'https://lh3.googleusercontent.com/d/1RuOUOg2MgPr6_ZOuzkG2KuXdIOXjFqUJ?w=800&q=80', alt: '웨딩 사진 17' },
+    { src: 'https://lh3.googleusercontent.com/d/1_CZmvNZI4OHLFgqUG18-iELAErC34lsE?w=800&q=80', alt: '웨딩 사진 18' },
+    { src: 'https://lh3.googleusercontent.com/d/1hllW-4ESew9ZEt96Jm4RRo_mQjnbKNlX?w=800&q=80', alt: '웨딩 사진 19' },
+    { src: 'https://lh3.googleusercontent.com/d/1jSf2pS48318rIx75dBZH3G9C8xuBAK5p?w=800&q=80', alt: '웨딩 사진 20' },
+    { src: 'https://lh3.googleusercontent.com/d/1mZC7vRoRI4MZVSWGoBb_35I8qQJsr_zn?w=800&q=80', alt: '웨딩 사진 21' },
+    { src: 'https://lh3.googleusercontent.com/d/1OrVduRnrwLIDk6awIlOFypYEtEChUpYp?w=800&q=80', alt: '웨딩 사진 22' },
+    { src: 'https://lh3.googleusercontent.com/d/1PZ4SlRmsDAHk5uSHUu97t1RnQsowob5N?w=800&q=80', alt: '웨딩 사진 23' },
+  ];
+
+
+  function renderGallery() {
+    const grid = document.getElementById('galleryGrid');
+    grid.innerHTML = GALLERY_IMAGES.map((img, i) => `
+      <div class="gallery-item${i === 0 ? ' gallery-main' : ''}" onclick="openLightbox(this)">
+        <img src="${img.src}" alt="${img.alt}" loading="${i === 0 ? 'eager' : 'lazy'}">
+      </div>
+    `).join('');
+  }
+
+  renderGallery();
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => observer.observe(r));
+
+  // Music
+  const audio = document.getElementById('bgm');
+  const btn = document.getElementById('musicBtn');
+  let playing = false;
+
+  btn.addEventListener('click', () => {
+    if (playing) {
+      audio.pause();
+      playing = false;
+      btn.classList.remove('playing');
+    } else {
+      audio.play().catch(() => {});
+      playing = true;
+      btn.classList.add('playing');
+    }
+  });
+
+  // Lightbox
+  function openLightbox(el) {
+    const src = el.querySelector('img').src;
+    document.getElementById('lightboxImg').src = src;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('lightbox').addEventListener('click', function(e) {
+    if (e.target === this) closeLightbox();
+  });
+
+  // Toast
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2200);
+  }
+
+  // Copy account
+  function copyAccount(num, btn) {
+    navigator.clipboard.writeText(num).then(() => {
+      btn.textContent = '✓ 복사됨';
+      btn.classList.add('copied');
+      showToast('계좌번호가 복사되었습니다');
+      setTimeout(() => { btn.textContent = '복사'; btn.classList.remove('copied'); }, 2000);
+    });
+  }
+
+  // Share
+  function shareKakao() { showToast('카카오톡 공유 기능을 연동해 주세요'); }
+
+  function copyLink() {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      showToast('링크가 복사되었습니다');
+    }).catch(() => showToast('링크를 복사하지 못했습니다'));
+  }
+</script>
+</body>
+</html>
