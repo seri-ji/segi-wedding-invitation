@@ -421,14 +421,51 @@
     margin-bottom: 24px;
   }
 
+  .account-group-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 0 10px;
+    border: none;
+    border-bottom: 1px solid rgba(184, 147, 106, 0.18);
+    background: none;
+    cursor: pointer;
+    text-align: left;
+  }
+
   .account-group-label {
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 11px;
     letter-spacing: 0.3em;
     color: var(--gold);
-    margin-bottom: 12px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid rgba(184, 147, 106, 0.18);
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
+  .account-arrow {
+    font-size: 11px;
+    color: var(--gold);
+    transition: transform 0.3s ease;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-left: 12px;
+  }
+
+  .account-group.open .account-arrow {
+    transform: rotate(180deg);
+  }
+
+  .account-list {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+
+  .account-group.open .account-list {
+    max-height: 480px;
+    padding-top: 12px;
   }
 
   .account-row {
@@ -895,42 +932,68 @@
   </p>
 
   <div class="account-group">
-    <p class="account-group-label">신랑측</p>
-    <div class="account-row">
-      <span class="account-bank">국민은행</span>
-      <div class="account-info">
-        <p class="account-number">123-456-789012</p>
-        <p class="account-holder">전홍기</p>
+    <button class="account-group-header" type="button" onclick="toggleAccount(this)" aria-expanded="false">
+      <span class="account-group-label">신랑측</span>
+      <span class="account-arrow" aria-hidden="true">▼</span>
+    </button>
+    <div class="account-list">
+      <div class="account-row">
+        <span class="account-bank">국민은행</span>
+        <div class="account-info">
+          <p class="account-number">123-456-789012</p>
+          <p class="account-holder">전홍기</p>
+        </div>
+        <button class="btn-copy" onclick="copyAccount('123-456-789012', this)">복사</button>
       </div>
-      <button class="btn-copy" onclick="copyAccount('123-456-789012', this)">복사</button>
-    </div>
-    <div class="account-row">
-      <span class="account-bank">신한은행</span>
-      <div class="account-info">
-        <p class="account-number">110-234-567890</p>
-        <p class="account-holder">전유기 (신랑 아버지)</p>
+      <div class="account-row">
+        <span class="account-bank">신한은행</span>
+        <div class="account-info">
+          <p class="account-number">110-234-567890</p>
+          <p class="account-holder">전유기 (신랑 아버지)</p>
+        </div>
+        <button class="btn-copy" onclick="copyAccount('110-234-567890', this)">복사</button>
       </div>
-      <button class="btn-copy" onclick="copyAccount('110-234-567890', this)">복사</button>
+      <div class="account-row">
+        <span class="account-bank">우리은행</span>
+        <div class="account-info">
+          <p class="account-number">000-000-000000</p>
+          <p class="account-holder">박정금 (신랑 어머니)</p>
+        </div>
+        <button class="btn-copy" onclick="copyAccount('000-000-000000', this)">복사</button>
+      </div>
     </div>
   </div>
 
   <div class="account-group">
-    <p class="account-group-label">신부측</p>
-    <div class="account-row">
-      <span class="account-bank">카카오뱅크</span>
-      <div class="account-info">
-        <p class="account-number">3333-12-3837147</p>
-        <p class="account-holder">지세리</p>
+    <button class="account-group-header" type="button" onclick="toggleAccount(this)" aria-expanded="false">
+      <span class="account-group-label">신부측</span>
+      <span class="account-arrow" aria-hidden="true">▼</span>
+    </button>
+    <div class="account-list">
+      <div class="account-row">
+        <span class="account-bank">카카오뱅크</span>
+        <div class="account-info">
+          <p class="account-number">3333-12-3837147</p>
+          <p class="account-holder">지세리</p>
+        </div>
+        <button class="btn-copy" onclick="copyAccount('1002-345-678901', this)">복사</button>
       </div>
-      <button class="btn-copy" onclick="copyAccount('1002-345-678901', this)">복사</button>
-    </div>
-    <div class="account-row">
-      <span class="account-bank">농협은행</span>
-      <div class="account-info">
-        <p class="account-number">301-0123-4567-81</p>
-        <p class="account-holder">지종선 (신부 아버지)</p>
+      <div class="account-row">
+        <span class="account-bank">농협은행</span>
+        <div class="account-info">
+          <p class="account-number">301-0123-4567-81</p>
+          <p class="account-holder">지종선 (신부 아버지)</p>
+        </div>
+        <button class="btn-copy" onclick="copyAccount('301-0123-4567-81', this)">복사</button>
       </div>
-      <button class="btn-copy" onclick="copyAccount('301-0123-4567-81', this)">복사</button>
+      <div class="account-row">
+        <span class="account-bank">기업은행</span>
+        <div class="account-info">
+          <p class="account-number">000-000-000000</p>
+          <p class="account-holder">이서진 (신부 어머니)</p>
+        </div>
+        <button class="btn-copy" onclick="copyAccount('000-000-000000', this)">복사</button>
+      </div>
     </div>
   </div>
 </section>
@@ -962,7 +1025,21 @@
 <!-- Toast -->
 <div class="toast" id="toast"></div>
 
+<script src="https://t1.kakaocdn.net/kakaolink/sdk.js"></script>
 <script>
+  // ── 카카오톡 공유 설정 ──
+  // 카카오 개발자(https://developers.kakao.com) 앱의 JavaScript 키를 입력하세요.
+  const KAKAO_JS_KEY = '';
+  const SHARE_PAGE_URL = 'https://seri-ji.github.io/segi-wedding-invitation/';
+
+  function initKakao() {
+    if (!KAKAO_JS_KEY) return;
+    if (!window.Kakao) return;
+    if (!Kakao.isInitialized()) Kakao.init(KAKAO_JS_KEY);
+  }
+
+  initKakao();
+
   // ── 갤러리 사진 목록 (여기에만 추가/수정) ──
   const GALLERY_IMAGES = [
     { src: 'https://lh3.googleusercontent.com/d/1WzRZP1EvCdXl3J1pGTrH9Ey3LuM9T6or?w=800&q=80', alt: '웨딩 사진 1' },
@@ -1107,6 +1184,12 @@
   }
 
   // Copy account
+  function toggleAccount(header) {
+    const group = header.closest('.account-group');
+    const isOpen = group.classList.toggle('open');
+    header.setAttribute('aria-expanded', isOpen);
+  }
+
   function copyAccount(num, btn) {
     navigator.clipboard.writeText(num).then(() => {
       btn.textContent = '✓ 복사됨';
@@ -1117,7 +1200,54 @@
   }
 
   // Share
-  function shareKakao() { showToast('카카오톡 공유 기능을 연동해 주세요'); }
+  function getShareUrl() {
+    const { protocol, hostname, href } = window.location;
+    if (protocol === 'file:' || hostname === 'localhost' || hostname === '127.0.0.1') {
+      return SHARE_PAGE_URL;
+    }
+    return href.split('#')[0];
+  }
+
+  function shareKakao() {
+    if (!KAKAO_JS_KEY) {
+      showToast('카카오 JavaScript 키를 설정해 주세요');
+      return;
+    }
+    if (!window.Kakao || !Kakao.isInitialized()) {
+      initKakao();
+    }
+    if (!window.Kakao || !Kakao.isInitialized()) {
+      showToast('카카오 SDK를 불러오지 못했습니다');
+      return;
+    }
+
+    const shareUrl = getShareUrl();
+    const shareImage = GALLERY_IMAGES[0]?.src || SHARE_PAGE_URL;
+
+    Kakao.Share.sendDefault({
+      objectType: 'feed',
+      content: {
+        title: '전홍기 ♥ 지세리 결혼합니다',
+        description: '2027년 01월 10일 일요일 오후 1시\n라루체웨딩홀 루아르홀',
+        imageUrl: shareImage,
+        link: {
+          mobileWebUrl: shareUrl,
+          webUrl: shareUrl,
+        },
+      },
+      buttons: [
+        {
+          title: '청첩장 보기',
+          link: {
+            mobileWebUrl: shareUrl,
+            webUrl: shareUrl,
+          },
+        },
+      ],
+    }).catch(() => {
+      showToast('카카오톡 공유에 실패했습니다');
+    });
+  }
 
   function copyLink() {
     navigator.clipboard.writeText(window.location.href).then(() => {
