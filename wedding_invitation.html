@@ -250,8 +250,6 @@
   .gallery-item:hover img { transform: scale(1.05); }
 
   .gallery-main {
-    grid-column: span 2;
-    grid-row: span 2;
   }
 
   /* ── Schedule ── */
@@ -913,6 +911,8 @@
   <button class="lightbox-close" onclick="closeLightbox()">✕</button>
   <div class="lightbox-viewport" id="lightboxViewport">
     <img id="lightboxImg" src="" alt="">
+    <video id="lightboxVideo" src="" controls playsinline style="max-width:90vw;max-height:90vh;display:none;"></video>
+    <iframe id="lightboxIframe" src="" allow="autoplay" allowfullscreen style="max-width:90vw;max-height:90vh;width:90vw;height:90vh;border:none;border-radius:4px;display:none;"></iframe>
   </div>
   <span class="lightbox-counter" id="lightboxCounter"></span>
 </div>
@@ -1308,39 +1308,48 @@
 
   // ── 갤러리 사진 목록 (여기에만 추가/수정) ──
   const GALLERY_IMAGES = [
-    { src: 'https://lh3.googleusercontent.com/d/1WzRZP1EvCdXl3J1pGTrH9Ey3LuM9T6or?w=800&q=80', alt: '웨딩 사진 1' },
-    /*{ src: 'https://lh3.googleusercontent.com/d/1zK5xbgCoYOTNa--_aL75DBLtIyMFtDqa?w=800&q=80', alt: '웨딩 사진 2' },*/
-    { src: 'https://lh3.googleusercontent.com/d/1-iriXLZ6DlfwsQEjeT0EuPrj5Nv7SY05?w=800&q=80', alt: '웨딩 사진 3' },
-    { src: 'https://lh3.googleusercontent.com/d/1dUBfeqycsPjDY9Nmbyoq5_j64TO3GplL?w=800&q=80', alt: '웨딩 사진 4' },
-    { src: 'https://lh3.googleusercontent.com/d/1zr1hEFfKp73Bpi2rGOeTXyMnwdeDz_1f?w=800&q=80', alt: '웨딩 사진 5' },
-    { src: 'https://lh3.googleusercontent.com/d/12ZFTLxHiFbjIFfh5akuQTZbEIui2bJVT?w=800&q=80', alt: '웨딩 사진 6' },
-    { src: 'https://lh3.googleusercontent.com/d/1jm5CTZGCwUNZTIGaQd_VpaLzeU_jO2xY?w=800&q=80', alt: '웨딩 사진 7' },
-    { src: 'https://lh3.googleusercontent.com/d/1I2WbV7yGlHA0EmGwQMekHjBrRbbG7x9i?w=800&q=80', alt: '웨딩 사진 8' },
-    { src: 'https://lh3.googleusercontent.com/d/1DIKScZwTQtRQj1Zlq7as203MTMQhgwyd?w=800&q=80', alt: '웨딩 사진 9' },
-    { src: 'https://lh3.googleusercontent.com/d/1NsMsYcDxvMfmP_xIonGLfJIOoV6CwiqZ?w=800&q=80', alt: '웨딩 사진 10' },
-    { src: 'https://lh3.googleusercontent.com/d/1abP3GmZxxzQxTMVRcG8rNfQpP9-6idGB?w=800&q=80', alt: '웨딩 사진 11' },
-    { src: 'https://lh3.googleusercontent.com/d/10FWS0Hnr6_cnmdRmz66rjWQlZAzo0nRh?w=800&q=80', alt: '웨딩 사진 12' },
-    { src: 'https://lh3.googleusercontent.com/d/1z-6LCRhOxnpkCm4r3XGxfu_rn6WKepb6?w=800&q=80', alt: '웨딩 사진 13' },
-    { src: 'https://lh3.googleusercontent.com/d/1dwta19GbqiCVVsrlInTRpRaTS1AqossI?w=800&q=80', alt: '웨딩 사진 14' }, 
-    { src: 'https://lh3.googleusercontent.com/d/1yXfGaa_85nXr2GqjL302POdoBV46vrku?w=800&q=80', alt: '웨딩 사진 15' },
-    { src: 'https://lh3.googleusercontent.com/d/1xp5o4SzeHYABo-VgwBi6l4nXSoYR2NX9?w=800&q=80', alt: '웨딩 사진 16' },
-    { src: 'https://lh3.googleusercontent.com/d/1RuOUOg2MgPr6_ZOuzkG2KuXdIOXjFqUJ?w=800&q=80', alt: '웨딩 사진 17' },
-    { src: 'https://lh3.googleusercontent.com/d/1_CZmvNZI4OHLFgqUG18-iELAErC34lsE?w=800&q=80', alt: '웨딩 사진 18' },
-    { src: 'https://lh3.googleusercontent.com/d/1hllW-4ESew9ZEt96Jm4RRo_mQjnbKNlX?w=800&q=80', alt: '웨딩 사진 19' },
-    { src: 'https://lh3.googleusercontent.com/d/1jSf2pS48318rIx75dBZH3G9C8xuBAK5p?w=800&q=80', alt: '웨딩 사진 20' },
-    { src: 'https://lh3.googleusercontent.com/d/1mZC7vRoRI4MZVSWGoBb_35I8qQJsr_zn?w=800&q=80', alt: '웨딩 사진 21' },
-    { src: 'https://lh3.googleusercontent.com/d/1OrVduRnrwLIDk6awIlOFypYEtEChUpYp?w=800&q=80', alt: '웨딩 사진 22' },
-    { src: 'https://lh3.googleusercontent.com/d/1PZ4SlRmsDAHk5uSHUu97t1RnQsowob5N?w=800&q=80', alt: '웨딩 사진 23' },
+    { src: 'https://lh3.googleusercontent.com/d/1LA1ghLADQZRmGkh_0h7POztSqW-W_9kl?w=800&q=80', alt: '웨딩 사진 2' },
+    { src: 'https://lh3.googleusercontent.com/d/1oId7yM7N93ES9iMPIlfXoL5VpG5uNMYo?w=800&q=80', alt: '웨딩 사진 3' },
+    { src: 'https://lh3.googleusercontent.com/d/1Zle3i6DJBlR9Ur-O-leFx22Xq0vj8KVl?w=800&q=80', alt: '웨딩 사진 4' },
+    { src: 'https://lh3.googleusercontent.com/d/18wR8IN4_YbSz9f9YWAaScveZrVnrd-2w?w=800&q=80', alt: '웨딩 사진 5' },
+    { src: 'https://lh3.googleusercontent.com/d/1vSqyoHQoxEWkZaTiISKXfzwMNHWBQfps?w=800&q=80', alt: '웨딩 사진 6' },
+    { src: 'https://lh3.googleusercontent.com/d/1WzRZP1EvCdXl3J1pGTrH9Ey3LuM9T6or?w=800&q=80', alt: '웨딩 사진 7' },
+    { src: 'https://lh3.googleusercontent.com/d/1-iriXLZ6DlfwsQEjeT0EuPrj5Nv7SY05?w=800&q=80', alt: '웨딩 사진 8' },
+    { src: 'https://lh3.googleusercontent.com/d/1dUBfeqycsPjDY9Nmbyoq5_j64TO3GplL?w=800&q=80', alt: '웨딩 사진 9' },
+    { src: 'https://lh3.googleusercontent.com/d/1zr1hEFfKp73Bpi2rGOeTXyMnwdeDz_1f?w=800&q=80', alt: '웨딩 사진 10' },
+    { src: 'https://lh3.googleusercontent.com/d/12ZFTLxHiFbjIFfh5akuQTZbEIui2bJVT?w=800&q=80', alt: '웨딩 사진 11' },
+    { src: 'https://lh3.googleusercontent.com/d/1jm5CTZGCwUNZTIGaQd_VpaLzeU_jO2xY?w=800&q=80', alt: '웨딩 사진 12' },
+    { src: 'https://lh3.googleusercontent.com/d/1I2WbV7yGlHA0EmGwQMekHjBrRbbG7x9i?w=800&q=80', alt: '웨딩 사진 13' },
+    { src: 'https://lh3.googleusercontent.com/d/1DIKScZwTQtRQj1Zlq7as203MTMQhgwyd?w=800&q=80', alt: '웨딩 사진 14' },
+    { src: 'https://lh3.googleusercontent.com/d/1NsMsYcDxvMfmP_xIonGLfJIOoV6CwiqZ?w=800&q=80', alt: '웨딩 사진 15' },
+    { src: 'https://lh3.googleusercontent.com/d/1abP3GmZxxzQxTMVRcG8rNfQpP9-6idGB?w=800&q=80', alt: '웨딩 사진 16' },
+    { src: 'https://lh3.googleusercontent.com/d/10FWS0Hnr6_cnmdRmz66rjWQlZAzo0nRh?w=800&q=80', alt: '웨딩 사진 17' },
+    { src: 'https://lh3.googleusercontent.com/d/1z-6LCRhOxnpkCm4r3XGxfu_rn6WKepb6?w=800&q=80', alt: '웨딩 사진 18' },
+    { src: 'https://lh3.googleusercontent.com/d/1dwta19GbqiCVVsrlInTRpRaTS1AqossI?w=800&q=80', alt: '웨딩 사진 19' }, 
+    { src: 'https://lh3.googleusercontent.com/d/1yXfGaa_85nXr2GqjL302POdoBV46vrku?w=800&q=80', alt: '웨딩 사진 20' },
+    { src: 'https://lh3.googleusercontent.com/d/1xp5o4SzeHYABo-VgwBi6l4nXSoYR2NX9?w=800&q=80', alt: '웨딩 사진 21' },
+    { src: 'https://lh3.googleusercontent.com/d/1RuOUOg2MgPr6_ZOuzkG2KuXdIOXjFqUJ?w=800&q=80', alt: '웨딩 사진 22' },
+    { src: 'https://lh3.googleusercontent.com/d/1_CZmvNZI4OHLFgqUG18-iELAErC34lsE?w=800&q=80', alt: '웨딩 사진 23' },
+    { src: 'https://lh3.googleusercontent.com/d/1hllW-4ESew9ZEt96Jm4RRo_mQjnbKNlX?w=800&q=80', alt: '웨딩 사진 24' },
+    { src: 'https://lh3.googleusercontent.com/d/1jSf2pS48318rIx75dBZH3G9C8xuBAK5p?w=800&q=80', alt: '웨딩 사진 25' },
+    { src: 'https://lh3.googleusercontent.com/d/1mZC7vRoRI4MZVSWGoBb_35I8qQJsr_zn?w=800&q=80', alt: '웨딩 사진 26' },
+    { src: 'https://drive.google.com/file/d/1OrVduRnrwLIDk6awIlOFypYEtEChUpYp/preview', thumb: 'https://lh3.googleusercontent.com/d/1OrVduRnrwLIDk6awIlOFypYEtEChUpYp?w=800&q=80', alt: '웨딩 사진 22', type: 'video' },
+    { src: 'https://lh3.googleusercontent.com/d/1PZ4SlRmsDAHk5uSHUu97t1RnQsowob5N?w=800&q=80', alt: '웨딩 사진 28' },
   ];
 
 
   function renderGallery() {
     const grid = document.getElementById('galleryGrid');
-    grid.innerHTML = GALLERY_IMAGES.map((img, i) => `
-      <div class="gallery-item${i === 0 ? ' gallery-main' : ''}" onclick="openLightbox(${i})">
+    grid.innerHTML = GALLERY_IMAGES.map((img, i) => {
+      if (img.type === 'video') {
+        return `<div class="gallery-item${i === 0 ? ' gallery-main' : ''}" onclick="openLightbox(${i})">
+          <img src="${img.thumb}" alt="${img.alt}" loading="lazy">
+        </div>`;
+      }
+      return `<div class="gallery-item${i === 0 ? ' gallery-main' : ''}" onclick="openLightbox(${i})">
         <img src="${img.src}" alt="${t('galleryAlt')} ${i + 1}" loading="${i === 0 ? 'eager' : 'lazy'}">
-      </div>
-    `).join('');
+      </div>`;
+    }).join('');
   }
 
   document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -1380,18 +1389,31 @@
 
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxVideo = document.getElementById('lightboxVideo');
+  const lightboxIframe = document.getElementById('lightboxIframe');
   const lightboxCounter = document.getElementById('lightboxCounter');
   const lightboxViewport = document.getElementById('lightboxViewport');
 
   function showLightboxImage(direction = 0) {
     const data = GALLERY_IMAGES[lightboxIndex];
-    lightboxImg.src = data.src;
-    lightboxImg.alt = data.alt;
     lightboxCounter.textContent = `${lightboxIndex + 1} / ${GALLERY_IMAGES.length}`;
 
-    lightboxImg.classList.remove('slide-next', 'slide-prev');
-    if (direction === 1) lightboxImg.classList.add('slide-next');
-    if (direction === -1) lightboxImg.classList.add('slide-prev');
+    if (data.type === 'video') {
+      lightboxImg.style.display = 'none';
+      lightboxVideo.style.display = 'none';
+      lightboxIframe.style.display = 'block';
+      lightboxIframe.src = data.src + '?autoplay=1';
+    } else {
+      lightboxIframe.style.display = 'none';
+      lightboxIframe.src = '';
+      lightboxVideo.style.display = 'none';
+      lightboxImg.style.display = '';
+      lightboxImg.src = data.src;
+      lightboxImg.alt = data.alt;
+      lightboxImg.classList.remove('slide-next', 'slide-prev');
+      if (direction === 1) lightboxImg.classList.add('slide-next');
+      if (direction === -1) lightboxImg.classList.add('slide-prev');
+    }
   }
 
   function openLightbox(index) {
@@ -1404,6 +1426,10 @@
   function closeLightbox() {
     lightbox.classList.remove('open');
     document.body.style.overflow = '';
+    lightboxIframe.src = '';
+    lightboxIframe.style.display = 'none';
+    lightboxVideo.pause();
+    lightboxVideo.src = '';
   }
 
   function nextLightboxImage() {
