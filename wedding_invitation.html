@@ -595,12 +595,55 @@
     opacity: 0.5;
   }
 
-  /* ── Music toggle ── */
-  .music-btn {
+  /* ── Top controls (language + music) ── */
+  .top-controls {
     position: fixed;
     top: 20px;
     right: 20px;
     z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .lang-switcher {
+    display: flex;
+    gap: 3px;
+    padding: 4px;
+    border-radius: 22px;
+    background: rgba(61, 43, 31, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(250, 240, 232, 0.28);
+    box-shadow: 0 4px 16px rgba(61, 43, 31, 0.15);
+  }
+
+  .lang-btn {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    padding: 6px 9px;
+    border-radius: 16px;
+    border: none;
+    background: transparent;
+    color: rgba(250, 240, 232, 0.65);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .lang-btn:hover {
+    color: rgba(250, 240, 232, 0.9);
+  }
+
+  .lang-btn.active {
+    background: rgba(184, 147, 106, 0.72);
+    color: rgba(250, 240, 232, 0.95);
+  }
+
+  /* ── Music toggle ── */
+  .music-btn {
+    position: static;
     width: 44px;
     height: 44px;
     border-radius: 50%;
@@ -777,16 +820,23 @@
 </head>
 <body>
 
-<!-- Music button -->
-<button class="music-btn" id="musicBtn" aria-label="배경음악 켜기/끄기">
-  <svg id="musicIcon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <path d="M11.5 6.5v13.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-    <ellipse class="music-note-head" cx="8.4" cy="21.8" rx="3.3" ry="2.7" transform="rotate(-24 8.4 21.8)" fill="currentColor"/>
-    <path d="M11.5 6.5c2.2-.6 4.2.4 5.4 2.2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-    <path class="music-arc arc-1" d="M17.5 12.5c2 1.5 3.2 3.6 3.2 6.2s-1.2 4.7-3.2 6.2" stroke="currentColor" stroke-width="1.35" stroke-linecap="round"/>
-    <path class="music-arc arc-2" d="M21.8 9.2c3.2 2.3 5.2 5.4 5.2 9.5s-2 7.2-5.2 9.5" stroke="currentColor" stroke-width="1.35" stroke-linecap="round"/>
-  </svg>
-</button>
+<!-- Top controls -->
+<div class="top-controls">
+  <div class="lang-switcher" role="group" aria-label="Language">
+    <button class="lang-btn active" type="button" data-lang="ko">KO</button>
+    <button class="lang-btn" type="button" data-lang="en">EN</button>
+    <button class="lang-btn" type="button" data-lang="ja">JP</button>
+  </div>
+  <button class="music-btn" id="musicBtn" data-i18n-aria="musicAria" aria-label="배경음악 켜기/끄기">
+    <svg id="musicIcon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M11.5 6.5v13.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <ellipse class="music-note-head" cx="8.4" cy="21.8" rx="3.3" ry="2.7" transform="rotate(-24 8.4 21.8)" fill="currentColor"/>
+      <path d="M11.5 6.5c2.2-.6 4.2.4 5.4 2.2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+      <path class="music-arc arc-1" d="M17.5 12.5c2 1.5 3.2 3.6 3.2 6.2s-1.2 4.7-3.2 6.2" stroke="currentColor" stroke-width="1.35" stroke-linecap="round"/>
+      <path class="music-arc arc-2" d="M21.8 9.2c3.2 2.3 5.2 5.4 5.2 9.5s-2 7.2-5.2 9.5" stroke="currentColor" stroke-width="1.35" stroke-linecap="round"/>
+    </svg>
+  </button>
+</div>
 
 <audio id="bgm" loop>
   <!-- 무료 웨딩 BGM - 나중에 원하는 파일로 교체 -->
@@ -800,15 +850,15 @@
   <div class="cover-content">
     <p class="cover-date">2027 · 01 · 10</p>
     <h1 class="cover-names">전홍기<span class="cover-heart">♥</span>지세리</h1>
-    <p class="cover-venue">라루체웨딩홀 루아르홀</p>
-    <p class="scroll-hint">SCROLL</p>
+    <p class="cover-venue" data-i18n="coverVenue">라루체웨딩홀 루아르홀</p>
+    <p class="scroll-hint" data-i18n="scrollHint">SCROLL</p>
   </div>
 </section>
 
 <!-- Invitation -->
 <section id="invitation" class="reveal">
-  <p class="section-label">INVITATION</p>
-  <p class="invitation-text">
+  <p class="section-label" data-i18n="sectionInvitation">INVITATION</p>
+  <p class="invitation-text" data-i18n-html="invitationHtml">
     서로가 마주보며 다져온 사랑을<br>
     이제 함께 한 곳을 바라보며<br>
     걸어가고자 합니다.<br><br>
@@ -818,12 +868,12 @@
 
   <div class="couple-block">
     <div class="person">
-      <p class="person-parents">전유기 · 박정금의 아들</p>
+      <p class="person-parents" data-i18n="groomParents">전유기 · 박정금의 아들</p>
       <p class="person-name">전 홍 기</p>
     </div>
     <div class="couple-divider">♥</div>
     <div class="person">
-      <p class="person-parents">지종선 · 이서진의 딸</p>
+      <p class="person-parents" data-i18n="brideParents">지종선 · 이서진의 딸</p>
       <p class="person-name">지 세 리</p>
     </div>
   </div>
@@ -831,22 +881,22 @@
 
 <!-- Contact -->
 <section id="contact" class="reveal">
-  <p class="section-label">CONTACT</p>
+  <p class="section-label" data-i18n="sectionContact">CONTACT</p>
   <div class="contact-grid">
     <div class="contact-card">
-      <p class="contact-role">신랑</p>
+      <p class="contact-role" data-i18n="contactGroom">신랑</p>
       <p class="contact-name">전홍기</p>
       <div class="contact-btns">
-        <a href="tel:010-8618-8603" class="btn-contact">📞 전화</a>
-        <a href="sms:010-8618-8603" class="btn-contact">💬 문자</a>
+        <a href="tel:010-8618-8603" class="btn-contact" data-i18n="call">📞 전화</a>
+        <a href="sms:010-8618-8603" class="btn-contact" data-i18n="sms">💬 문자</a>
       </div>
     </div>
     <div class="contact-card">
-      <p class="contact-role">신부</p>
+      <p class="contact-role" data-i18n="contactBride">신부</p>
       <p class="contact-name">지세리</p>
       <div class="contact-btns">
-        <a href="tel:010-4868-7897" class="btn-contact">📞 전화</a>
-        <a href="sms:010-4868-7897" class="btn-contact">💬 문자</a>
+        <a href="tel:010-4868-7897" class="btn-contact" data-i18n="call">📞 전화</a>
+        <a href="sms:010-4868-7897" class="btn-contact" data-i18n="sms">💬 문자</a>
       </div>
     </div>
   </div>
@@ -854,7 +904,7 @@
 
 <!-- Gallery -->
 <section id="gallery" class="reveal">
-  <p class="section-label">GALLERY</p>
+  <p class="section-label" data-i18n="sectionGallery">GALLERY</p>
   <div class="gallery-grid" id="galleryGrid"></div>
 </section>
 
@@ -869,27 +919,27 @@
 
 <!-- Schedule -->
 <section id="schedule" class="reveal">
-  <p class="section-label">SCHEDULE</p>
+  <p class="section-label" data-i18n="sectionSchedule">SCHEDULE</p>
   <div class="schedule-card">
-    <p class="schedule-month">JAN</p>
+    <p class="schedule-month" data-i18n="scheduleMonth">JAN</p>
     <p class="schedule-day">10</p>
     <div class="schedule-divider"></div>
-    <p class="schedule-detail">
+    <p class="schedule-detail" data-i18n-html="scheduleDetailHtml">
       2027년 01월 10일 일요일 오후 1시<br>
       라루체웨딩홀 루아르홀
     </p>
     <div class="calendar-btns">
-      <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=%EC%98%A4%ED%9B%84%201%EC%8B%9C%20%EC%84%B8%EB%A6%AC%20%ED%99%8D%EA%B8%B0%20%EA%B2%B0%ED%98%BC%EC%8B%9D&dates=20270110T130000/20270110T140000&ctz=Asia%2FSeoul" class="btn-cal">📅 구글 캘린더</a>
-      <a href="data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0APRODID:-//Event//EN%0ABEGIN:VEVENT%0AUID:20270110T130000-kst@event%0ADTSTART;TZID=Asia/Seoul:20270110T130000%0ADTEND;TZID=Asia/Seoul:20270110T140000%0ASUMMARY:%EC%98%A4%ED%9B%84%201%EC%8B%9C%20%EC%84%B8%EB%A6%AC%20%ED%99%8D%EA%B8%B0%20%EA%B2%B0%ED%98%BC%EC%8B%9D%0AEND:VEVENT%0AEND:VCALENDAR" class="btn-cal">🍎 아이폰 캘린더</a>
+      <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=%EC%98%A4%ED%9B%84%201%EC%8B%9C%20%EC%84%B8%EB%A6%AC%20%ED%99%8D%EA%B8%B0%20%EA%B2%B0%ED%98%BC%EC%8B%9D&dates=20270110T130000/20270110T140000&ctz=Asia%2FSeoul" class="btn-cal" data-i18n="btnGoogleCal">📅 구글 캘린더</a>
+      <a href="data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0APRODID:-//Event//EN%0ABEGIN:VEVENT%0AUID:20270110T130000-kst@event%0ADTSTART;TZID=Asia/Seoul:20270110T130000%0ADTEND;TZID=Asia/Seoul:20270110T140000%0ASUMMARY:%EC%98%A4%ED%9B%84%201%EC%8B%9C%20%EC%84%B8%EB%A6%AC%20%ED%99%8D%EA%B8%B0%20%EA%B2%B0%ED%98%BC%EC%8B%9D%0AEND:VEVENT%0AEND:VCALENDAR" class="btn-cal" data-i18n="btnAppleCal">🍎 아이폰 캘린더</a>
     </div>
   </div>
 </section>
 
 <!-- Location -->
 <section id="location" class="reveal">
-  <p class="section-label">LOCATION</p>
+  <p class="section-label" data-i18n="sectionLocation">LOCATION</p>
   <div class="map-placeholder">
-    <a href="https://place.map.kakao.com/8586977" target="_blank" rel="noopener" class="map-link" aria-label="카카오맵에서 라루체웨딩홀 보기">
+    <a href="https://place.map.kakao.com/8586977" target="_blank" rel="noopener" class="map-link" data-i18n-aria="mapAria" aria-label="카카오맵에서 라루체웨딩홀 보기">
       <iframe
         src="https://t1.daumcdn.net/roughmap/imgmap/a72f75da35e014be261328eb3ee887ea23858408c7a6e7d981801377f9b161c2"
         title="라루체웨딩홀 위치"
@@ -898,34 +948,33 @@
     </a>
   </div>
   <div class="address-block">
-    <strong>라루체웨딩홀 루아르홀</strong>
-    서울특별시 중구 퇴계로18길 46<br>
-    라루체웨딩홀 4층 루아르홀
+    <strong data-i18n="venueName">라루체웨딩홀 루아르홀</strong>
+    <span data-i18n-html="addressHtml">서울특별시 중구 퇴계로18길 46<br>라루체웨딩홀 4층 루아르홀</span>
   </div>
   <div class="map-btns">
-    <a href="#" class="btn-map">카카오맵</a>
-    <a href="https://naver.me/IgJGrKmE" class="btn-map">네이버지도</a>
-    <a href="#" class="btn-map">T맵</a>
+    <a href="#" class="btn-map" data-i18n="mapKakao">카카오맵</a>
+    <a href="https://naver.me/IgJGrKmE" class="btn-map" data-i18n="mapNaver">네이버지도</a>
+    <a href="#" class="btn-map" data-i18n="mapTmap">T맵</a>
   </div>
 
   <div class="transport-item">
-    <p class="transport-label">🚇 지하철</p>
-    <p class="transport-desc">4호선 명동역 4번 출구에서 도보 5분</p>
+    <p class="transport-label" data-i18n="transportSubway">🚇 지하철</p>
+    <p class="transport-desc" data-i18n="transportSubwayDesc">4호선 명동역 4번 출구에서 도보 5분</p>
   </div>
   <div class="transport-item">
-    <p class="transport-label">🚌 버스</p>
-    <p class="transport-desc">간선버스 105, 463 명동역 7번 출구 하차</p>
+    <p class="transport-label" data-i18n="transportBus">🚌 버스</p>
+    <p class="transport-desc" data-i18n="transportBusDesc">간선버스 105, 463 명동역 7번 출구 하차</p>
   </div>
   <div class="transport-item">
-    <p class="transport-label">🚗 자가용</p>
-    <p class="transport-desc">라루체웨딩홀 주차장 이용 가능 (2시간 무료)<br>내비게이션 '라루체웨딩홀' 검색</p>
+    <p class="transport-label" data-i18n="transportCar">🚗 자가용</p>
+    <p class="transport-desc" data-i18n-html="transportCarDescHtml">라루체웨딩홀 주차장 이용 가능 (2시간 무료)<br>내비게이션 '라루체웨딩홀' 검색</p>
   </div>
 </section>
 
 <!-- Account -->
 <section id="account" class="reveal">
-  <p class="section-label">ACCOUNT</p>
-  <p class="account-intro">
+  <p class="section-label" data-i18n="sectionAccount">ACCOUNT</p>
+  <p class="account-intro" data-i18n-html="accountIntroHtml">
     마음만으로도 충분합니다.<br>
     참석이 어려우신 분들을 위해<br>
     계좌 정보를 안내드립니다.
@@ -933,7 +982,7 @@
 
   <div class="account-group">
     <button class="account-group-header" type="button" onclick="toggleAccount(this)" aria-expanded="false">
-      <span class="account-group-label">신랑측</span>
+      <span class="account-group-label" data-i18n="accountGroomSide">신랑측</span>
       <span class="account-arrow" aria-hidden="true">▼</span>
     </button>
     <div class="account-list">
@@ -941,32 +990,32 @@
         <span class="account-bank">국민은행</span>
         <div class="account-info">
           <p class="account-number">123-456-789012</p>
-          <p class="account-holder">전홍기</p>
+          <p class="account-holder" data-i18n="holderGroom">전홍기</p>
         </div>
-        <button class="btn-copy" onclick="copyAccount('123-456-789012', this)">복사</button>
+        <button class="btn-copy" data-i18n="copy" onclick="copyAccount('123-456-789012', this)">복사</button>
       </div>
       <div class="account-row">
         <span class="account-bank">신한은행</span>
         <div class="account-info">
           <p class="account-number">110-234-567890</p>
-          <p class="account-holder">전유기 (신랑 아버지)</p>
+          <p class="account-holder" data-i18n="holderGroomFather">전유기 (신랑 아버지)</p>
         </div>
-        <button class="btn-copy" onclick="copyAccount('110-234-567890', this)">복사</button>
+        <button class="btn-copy" data-i18n="copy" onclick="copyAccount('110-234-567890', this)">복사</button>
       </div>
       <div class="account-row">
         <span class="account-bank">우리은행</span>
         <div class="account-info">
           <p class="account-number">000-000-000000</p>
-          <p class="account-holder">박정금 (신랑 어머니)</p>
+          <p class="account-holder" data-i18n="holderGroomMother">박정금 (신랑 어머니)</p>
         </div>
-        <button class="btn-copy" onclick="copyAccount('000-000-000000', this)">복사</button>
+        <button class="btn-copy" data-i18n="copy" onclick="copyAccount('000-000-000000', this)">복사</button>
       </div>
     </div>
   </div>
 
   <div class="account-group">
     <button class="account-group-header" type="button" onclick="toggleAccount(this)" aria-expanded="false">
-      <span class="account-group-label">신부측</span>
+      <span class="account-group-label" data-i18n="accountBrideSide">신부측</span>
       <span class="account-arrow" aria-hidden="true">▼</span>
     </button>
     <div class="account-list">
@@ -974,25 +1023,25 @@
         <span class="account-bank">카카오뱅크</span>
         <div class="account-info">
           <p class="account-number">3333-12-3837147</p>
-          <p class="account-holder">지세리</p>
+          <p class="account-holder" data-i18n="holderBride">지세리</p>
         </div>
-        <button class="btn-copy" onclick="copyAccount('1002-345-678901', this)">복사</button>
+        <button class="btn-copy" data-i18n="copy" onclick="copyAccount('1002-345-678901', this)">복사</button>
       </div>
       <div class="account-row">
         <span class="account-bank">농협은행</span>
         <div class="account-info">
           <p class="account-number">301-0123-4567-81</p>
-          <p class="account-holder">지종선 (신부 아버지)</p>
+          <p class="account-holder" data-i18n="holderBrideFather">지종선 (신부 아버지)</p>
         </div>
-        <button class="btn-copy" onclick="copyAccount('301-0123-4567-81', this)">복사</button>
+        <button class="btn-copy" data-i18n="copy" onclick="copyAccount('301-0123-4567-81', this)">복사</button>
       </div>
       <div class="account-row">
         <span class="account-bank">기업은행</span>
         <div class="account-info">
           <p class="account-number">000-000-000000</p>
-          <p class="account-holder">이서진 (신부 어머니)</p>
+          <p class="account-holder" data-i18n="holderBrideMother">이서진 (신부 어머니)</p>
         </div>
-        <button class="btn-copy" onclick="copyAccount('000-000-000000', this)">복사</button>
+        <button class="btn-copy" data-i18n="copy" onclick="copyAccount('000-000-000000', this)">복사</button>
       </div>
     </div>
   </div>
@@ -1000,17 +1049,17 @@
 
 <!-- Share -->
 <section id="share" class="reveal">
-  <p class="section-label">SHARE</p>
-  <p class="share-intro">
+  <p class="section-label" data-i18n="sectionShare">SHARE</p>
+  <p class="share-intro" data-i18n="shareIntro">
     소중한 분들께 청첩장을 전해주세요
   </p>
   <div class="share-btns">
     <button class="btn-share btn-kakao" onclick="shareKakao()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.477 3 2 6.477 2 10.727c0 2.67 1.46 5.03 3.686 6.508L4.68 21l4.26-2.2c.996.274 2.055.422 3.06.422 5.523 0 10-3.477 10-7.773C22 6.477 17.523 3 12 3z"/></svg>
-      카카오톡으로 공유하기
+      <span data-i18n="shareKakao">카카오톡으로 공유하기</span>
     </button>
     <button class="btn-share btn-link-copy" onclick="copyLink()">
-      🔗 링크 복사하기
+      <span data-i18n="shareLink">🔗 링크 복사하기</span>
     </button>
   </div>
 </section>
@@ -1018,8 +1067,8 @@
 <!-- Footer -->
 <footer class="footer">
   <p class="footer-names">전홍기 ♥ 지세리</p>
-  <p class="footer-date">2027년 01월 10일 일요일 오후 1시</p>
-  <p class="footer-venue">라루체웨딩홀 루아르홀</p>
+  <p class="footer-date" data-i18n="footerDate">2027년 01월 10일 일요일 오후 1시</p>
+  <p class="footer-venue" data-i18n="coverVenue">라루체웨딩홀 루아르홀</p>
 </footer>
 
 <!-- Toast -->
@@ -1039,6 +1088,223 @@
   }
 
   initKakao();
+
+  // ── 다국어 ──
+  const I18N = {
+    ko: {
+      pageTitle: '전홍기 ♥ 지세리 결혼합니다',
+      musicAria: '배경음악 켜기/끄기',
+      coverVenue: '라루체웨딩홀 루아르홀',
+      scrollHint: 'SCROLL',
+      sectionInvitation: 'INVITATION',
+      sectionContact: 'CONTACT',
+      sectionGallery: 'GALLERY',
+      sectionSchedule: 'SCHEDULE',
+      sectionLocation: 'LOCATION',
+      sectionAccount: 'ACCOUNT',
+      sectionShare: 'SHARE',
+      invitationHtml: '서로가 마주보며 다져온 사랑을<br>이제 함께 한 곳을 바라보며<br>걸어가고자 합니다.<br><br>저희 두 사람이 사랑을 약속하는<br>첫 걸음을 함께해 주세요.',
+      groomParents: '전유기 · 박정금의 아들',
+      brideParents: '지종선 · 이서진의 딸',
+      contactGroom: '신랑',
+      contactBride: '신부',
+      call: '📞 전화',
+      sms: '💬 문자',
+      scheduleMonth: 'JAN',
+      scheduleDetailHtml: '2027년 01월 10일 일요일 오후 1시<br>라루체웨딩홀 루아르홀',
+      btnGoogleCal: '📅 구글 캘린더',
+      btnAppleCal: '🍎 아이폰 캘린더',
+      mapAria: '카카오맵에서 라루체웨딩홀 보기',
+      venueName: '라루체웨딩홀 루아르홀',
+      addressHtml: '서울특별시 중구 퇴계로18길 46<br>라루체웨딩홀 4층 루아르홀',
+      mapKakao: '카카오맵',
+      mapNaver: '네이버지도',
+      mapTmap: 'T맵',
+      transportSubway: '🚇 지하철',
+      transportSubwayDesc: '4호선 명동역 4번 출구에서 도보 5분',
+      transportBus: '🚌 버스',
+      transportBusDesc: '간선버스 105, 463 명동역 7번 출구 하차',
+      transportCar: '🚗 자가용',
+      transportCarDescHtml: '라루체웨딩홀 주차장 이용 가능 (2시간 무료)<br>내비게이션 \'라루체웨딩홀\' 검색',
+      accountIntroHtml: '마음만으로도 충분합니다.<br>참석이 어려우신 분들을 위해<br>계좌 정보를 안내드립니다.',
+      accountGroomSide: '신랑측',
+      accountBrideSide: '신부측',
+      holderGroom: '전홍기',
+      holderGroomFather: '전유기 (신랑 아버지)',
+      holderGroomMother: '박정금 (신랑 어머니)',
+      holderBride: '지세리',
+      holderBrideFather: '지종선 (신부 아버지)',
+      holderBrideMother: '이서진 (신부 어머니)',
+      copy: '복사',
+      copied: '✓ 복사됨',
+      shareIntro: '소중한 분들께 청첩장을 전해주세요',
+      shareKakao: '카카오톡으로 공유하기',
+      shareLink: '🔗 링크 복사하기',
+      footerDate: '2027년 01월 10일 일요일 오후 1시',
+      galleryAlt: '웨딩 사진',
+      toastAccountCopied: '계좌번호가 복사되었습니다',
+      toastLinkCopied: '링크가 복사되었습니다',
+      toastLinkFail: '링크를 복사하지 못했습니다',
+      toastKakaoKey: '카카오 JavaScript 키를 설정해 주세요',
+      toastKakaoSdk: '카카오 SDK를 불러오지 못했습니다',
+      toastKakaoFail: '카카오톡 공유에 실패했습니다',
+      kakaoShareTitle: '전홍기 ♥ 지세리 결혼합니다',
+      kakaoShareDesc: '2027년 01월 10일 일요일 오후 1시\n라루체웨딩홀 루아르홀',
+      kakaoShareBtn: '청첩장 보기',
+    },
+    en: {
+      pageTitle: 'Honggi Jeon ♥ Seri Ji Wedding',
+      musicAria: 'Toggle background music',
+      coverVenue: 'La Luce Wedding Hall · Luar Hall',
+      scrollHint: 'SCROLL',
+      sectionInvitation: 'INVITATION',
+      sectionContact: 'CONTACT',
+      sectionGallery: 'GALLERY',
+      sectionSchedule: 'SCHEDULE',
+      sectionLocation: 'LOCATION',
+      sectionAccount: 'ACCOUNT',
+      sectionShare: 'SHARE',
+      invitationHtml: 'With love nurtured face to face,<br>we now wish to walk together<br>looking toward the same horizon.<br><br>Please join us as we take<br>our first step in marriage.',
+      groomParents: 'Son of Yugi Jeon & Jeonggeum Park',
+      brideParents: 'Daughter of Jongseon Ji & Seojin Lee',
+      contactGroom: 'Groom',
+      contactBride: 'Bride',
+      call: '📞 Call',
+      sms: '💬 Message',
+      scheduleMonth: 'JAN',
+      scheduleDetailHtml: 'Sunday, January 10, 2027 · 1:00 PM<br>La Luce Wedding Hall · Luar Hall',
+      btnGoogleCal: '📅 Google Calendar',
+      btnAppleCal: '🍎 Apple Calendar',
+      mapAria: 'View La Luce Wedding Hall on Kakao Map',
+      venueName: 'La Luce Wedding Hall · Luar Hall',
+      addressHtml: '46 Toegye-ro 18-gil, Jung-gu, Seoul<br>4F Luar Hall, La Luce Wedding Hall',
+      mapKakao: 'Kakao Map',
+      mapNaver: 'Naver Map',
+      mapTmap: 'T Map',
+      transportSubway: '🚇 Subway',
+      transportSubwayDesc: 'Line 4, Myeongdong Stn. Exit 4 · 5 min walk',
+      transportBus: '🚌 Bus',
+      transportBusDesc: 'Bus 105, 463 · Get off at Myeongdong Stn. Exit 7',
+      transportCar: '🚗 By car',
+      transportCarDescHtml: 'Parking available (2 hours free)<br>Search \'La Luce Wedding Hall\' in navigation',
+      accountIntroHtml: 'Your presence is the greatest gift.<br>For those unable to attend,<br>we share our account details below.',
+      accountGroomSide: "Groom's Side",
+      accountBrideSide: "Bride's Side",
+      holderGroom: 'Honggi Jeon',
+      holderGroomFather: 'Yugi Jeon (Groom\'s father)',
+      holderGroomMother: 'Jeonggeum Park (Groom\'s mother)',
+      holderBride: 'Seri Ji',
+      holderBrideFather: 'Jongseon Ji (Bride\'s father)',
+      holderBrideMother: 'Seojin Lee (Bride\'s mother)',
+      copy: 'Copy',
+      copied: '✓ Copied',
+      shareIntro: 'Share our wedding invitation with loved ones',
+      shareKakao: 'Share via KakaoTalk',
+      shareLink: '🔗 Copy link',
+      footerDate: 'Sunday, January 10, 2027 · 1:00 PM',
+      galleryAlt: 'Wedding photo',
+      toastAccountCopied: 'Account number copied',
+      toastLinkCopied: 'Link copied',
+      toastLinkFail: 'Failed to copy link',
+      toastKakaoKey: 'Please set your Kakao JavaScript key',
+      toastKakaoSdk: 'Failed to load Kakao SDK',
+      toastKakaoFail: 'Failed to share via KakaoTalk',
+      kakaoShareTitle: 'Honggi Jeon ♥ Seri Ji Wedding',
+      kakaoShareDesc: 'Sunday, January 10, 2027 · 1:00 PM\nLa Luce Wedding Hall · Luar Hall',
+      kakaoShareBtn: 'View invitation',
+    },
+    ja: {
+      pageTitle: '全弘基 ♥ 池世莉 結婚式',
+      musicAria: 'BGMのオン/オフ',
+      coverVenue: 'ラルーチェウェディングホール ルアールホール',
+      scrollHint: 'SCROLL',
+      sectionInvitation: 'INVITATION',
+      sectionContact: 'CONTACT',
+      sectionGallery: 'GALLERY',
+      sectionSchedule: 'SCHEDULE',
+      sectionLocation: 'LOCATION',
+      sectionAccount: 'ACCOUNT',
+      sectionShare: 'SHARE',
+      invitationHtml: '向き合いながら育んだ愛を胸に、<br>これからは同じ未来を見つめて<br>歩んでいきたいと思います。<br><br>私たちの結婚という第一歩に<br>ぜひご出席ください。',
+      groomParents: '全有基 · 朴正琴の息子',
+      brideParents: '池鍾善 · 李瑞珍の娘',
+      contactGroom: '新郎',
+      contactBride: '新婦',
+      call: '📞 電話',
+      sms: '💬 メッセージ',
+      scheduleMonth: '1月',
+      scheduleDetailHtml: '2027年1月10日（日）午後1時<br>ラルーチェウェディングホール ルアールホール',
+      btnGoogleCal: '📅 Googleカレンダー',
+      btnAppleCal: '🍎 iPhoneカレンダー',
+      mapAria: 'カカオマップでラルーチェウェディングホールを見る',
+      venueName: 'ラルーチェウェディングホール ルアールホール',
+      addressHtml: 'ソウル特別市中区退渓路18ギル46<br>ラルーチェウェディングホール4階 ルアールホール',
+      mapKakao: 'カカオマップ',
+      mapNaver: 'NAVERマップ',
+      mapTmap: 'T map',
+      transportSubway: '🚇 地下鉄',
+      transportSubwayDesc: '4号线 明洞駅4番出口より徒歩5分',
+      transportBus: '🚌 バス',
+      transportBusDesc: '幹線バス105・463 明洞駅7番出口下車',
+      transportCar: '🚗 お車',
+      transportCarDescHtml: 'ラルーチェウェディングホール駐車場利用可（2時間無料）<br>ナビで「ラルーチェウェディングホール」を検索',
+      accountIntroHtml: 'お気持ちだけで十分です。<br>ご出席が難しい方のために<br>口座情報をご案内いたします。',
+      accountGroomSide: '新郎側',
+      accountBrideSide: '新婦側',
+      holderGroom: '全弘基',
+      holderGroomFather: '全有基（新郎の父）',
+      holderGroomMother: '朴正琴（新郎の母）',
+      holderBride: '池世莉',
+      holderBrideFather: '池鍾善（新婦の父）',
+      holderBrideMother: '李瑞珍（新婦の母）',
+      copy: 'コピー',
+      copied: '✓ コピー済',
+      shareIntro: '大切な方へ招待状をお伝えください',
+      shareKakao: 'カカオトークで共有',
+      shareLink: '🔗 リンクをコピー',
+      footerDate: '2027年1月10日（日）午後1時',
+      galleryAlt: 'ウェディング写真',
+      toastAccountCopied: '口座番号をコピーしました',
+      toastLinkCopied: 'リンクをコピーしました',
+      toastLinkFail: 'リンクのコピーに失敗しました',
+      toastKakaoKey: 'カカオ JavaScript キーを設定してください',
+      toastKakaoSdk: 'カカオ SDKの読み込みに失敗しました',
+      toastKakaoFail: 'カカオトーク共有に失敗しました',
+      kakaoShareTitle: '全弘基 ♥ 池世莉 結婚式',
+      kakaoShareDesc: '2027年1月10日（日）午後1時\nラルーチェウェディングホール ルアールホール',
+      kakaoShareBtn: '招待状を見る',
+    },
+  };
+
+  let currentLang = localStorage.getItem('wedding-lang') || 'ko';
+
+  function t(key) {
+    return I18N[currentLang][key] || I18N.ko[key] || key;
+  }
+
+  function setLanguage(lang) {
+    if (!I18N[lang]) return;
+    currentLang = lang;
+    localStorage.setItem('wedding-lang', lang);
+    document.documentElement.lang = lang === 'ja' ? 'ja' : lang === 'en' ? 'en' : 'ko';
+    document.title = t('pageTitle');
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      el.textContent = t(el.dataset.i18n);
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      el.innerHTML = t(el.dataset.i18nHtml);
+    });
+    document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+      el.setAttribute('aria-label', t(el.dataset.i18nAria));
+    });
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+
+    if (typeof renderGallery === 'function') renderGallery();
+  }
 
   // ── 갤러리 사진 목록 (여기에만 추가/수정) ──
   const GALLERY_IMAGES = [
@@ -1072,12 +1338,16 @@
     const grid = document.getElementById('galleryGrid');
     grid.innerHTML = GALLERY_IMAGES.map((img, i) => `
       <div class="gallery-item${i === 0 ? ' gallery-main' : ''}" onclick="openLightbox(${i})">
-        <img src="${img.src}" alt="${img.alt}" loading="${i === 0 ? 'eager' : 'lazy'}">
+        <img src="${img.src}" alt="${t('galleryAlt')} ${i + 1}" loading="${i === 0 ? 'eager' : 'lazy'}">
       </div>
     `).join('');
   }
 
-  renderGallery();
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+  });
+
+  setLanguage(currentLang);
 
   // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
@@ -1192,10 +1462,10 @@
 
   function copyAccount(num, btn) {
     navigator.clipboard.writeText(num).then(() => {
-      btn.textContent = '✓ 복사됨';
+      btn.textContent = t('copied');
       btn.classList.add('copied');
-      showToast('계좌번호가 복사되었습니다');
-      setTimeout(() => { btn.textContent = '복사'; btn.classList.remove('copied'); }, 2000);
+      showToast(t('toastAccountCopied'));
+      setTimeout(() => { btn.textContent = t('copy'); btn.classList.remove('copied'); }, 2000);
     });
   }
 
@@ -1210,14 +1480,14 @@
 
   function shareKakao() {
     if (!KAKAO_JS_KEY) {
-      showToast('카카오 JavaScript 키를 설정해 주세요');
+      showToast(t('toastKakaoKey'));
       return;
     }
     if (!window.Kakao || !Kakao.isInitialized()) {
       initKakao();
     }
     if (!window.Kakao || !Kakao.isInitialized()) {
-      showToast('카카오 SDK를 불러오지 못했습니다');
+      showToast(t('toastKakaoSdk'));
       return;
     }
 
@@ -1227,8 +1497,8 @@
     Kakao.Share.sendDefault({
       objectType: 'feed',
       content: {
-        title: '전홍기 ♥ 지세리 결혼합니다',
-        description: '2027년 01월 10일 일요일 오후 1시\n라루체웨딩홀 루아르홀',
+        title: t('kakaoShareTitle'),
+        description: t('kakaoShareDesc'),
         imageUrl: shareImage,
         link: {
           mobileWebUrl: shareUrl,
@@ -1237,7 +1507,7 @@
       },
       buttons: [
         {
-          title: '청첩장 보기',
+          title: t('kakaoShareBtn'),
           link: {
             mobileWebUrl: shareUrl,
             webUrl: shareUrl,
@@ -1245,14 +1515,14 @@
         },
       ],
     }).catch(() => {
-      showToast('카카오톡 공유에 실패했습니다');
+      showToast(t('toastKakaoFail'));
     });
   }
 
   function copyLink() {
     navigator.clipboard.writeText(window.location.href).then(() => {
-      showToast('링크가 복사되었습니다');
-    }).catch(() => showToast('링크를 복사하지 못했습니다'));
+      showToast(t('toastLinkCopied'));
+    }).catch(() => showToast(t('toastLinkFail')));
   }
 
 </script>
