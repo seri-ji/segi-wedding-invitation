@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>청첩장 폰트 비교 2</title>
+<style>
+  @font-face {
+    font-family: 'MaruBuri';
+    src: url('https://cdn.jsdelivr.net/gh/fonts-archive/MaruBuri@main/MaruBuri-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'MaruBuri';
+    src: url('https://cdn.jsdelivr.net/gh/fonts-archive/MaruBuri@main/MaruBuri-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-display: swap;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #FAF6F0;
+    --gold: #B8936A;
+    --deep: #3D2B1F;
+    --text: #5A3E30;
+    --muted: #9A7B6A;
+    --white: #FDFAF7;
+  }
+
+  body {
+    background: #EFE9E1;
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
+    padding: 32px 16px 64px;
+  }
+
+  .page-title {
+    text-align: center;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--deep);
+    margin-bottom: 4px;
+  }
+
+  .page-sub {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+
+  .card {
+    max-width: 480px;
+    margin: 0 auto 24px;
+    background: var(--cream);
+    border: 1px solid rgba(184, 147, 106, 0.25);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 18px rgba(61, 43, 31, 0.06);
+  }
+
+  .card-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    background: rgba(184, 147, 106, 0.12);
+    border-bottom: 1px solid rgba(184, 147, 106, 0.2);
+  }
+
+  .card-label-name {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--gold);
+  }
+
+  .card-label-tag {
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--muted);
+    text-align: right;
+  }
+
+  .sample {
+    padding: 36px 28px 32px;
+    text-align: center;
+  }
+
+  .sample-date {
+    font-family: -apple-system, sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+
+  .sample-names {
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    line-height: 1.4;
+    color: var(--deep);
+    margin-bottom: 10px;
+  }
+
+  .sample-heart {
+    font-size: 18px;
+    opacity: 0.8;
+    margin: 0 8px;
+  }
+
+  .sample-venue {
+    font-family: -apple-system, sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    margin-bottom: 22px;
+  }
+
+  .sample-divider {
+    width: 28px;
+    height: 1px;
+    background: var(--gold);
+    margin: 0 auto 22px;
+    opacity: 0.5;
+  }
+
+  .sample-invite {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.95;
+    color: var(--text);
+    word-break: keep-all;
+  }
+
+  .sample-alphabet {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px dashed rgba(184, 147, 106, 0.25);
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  .note-card {
+    max-width: 480px;
+    margin: 0 auto 24px;
+    background: var(--white);
+    border: 1px solid rgba(184, 147, 106, 0.25);
+    border-radius: 18px;
+    padding: 24px 22px;
+  }
+
+  .note-card .card-label {
+    margin: -24px -22px 18px;
+  }
+
+  .note-body {
+    font-size: 13px;
+    line-height: 1.9;
+    color: var(--text);
+  }
+
+  .note-body a {
+    color: var(--gold);
+    text-decoration: underline;
+  }
+
+  .note-flag {
+    display: inline-block;
+    font-size: 11px;
+    color: #a5583f;
+    background: rgba(165, 88, 63, 0.08);
+    border: 1px solid rgba(165, 88, 63, 0.25);
+    border-radius: 8px;
+    padding: 6px 10px;
+    margin-top: 14px;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+
+<p class="page-title">청첩장 폰트 후보 비교 · 2탄</p>
+<p class="page-sub">국내 모바일 청첩장 업체·디자이너들이 자주 쓰는 폰트 3가지</p>
+
+<!-- Maru Buri -->
+<div class="card">
+  <div class="card-label">
+    <span class="card-label-name">마루 부리 (MaruBuri)</span>
+    <span class="card-label-tag">네이버 제작 · 가장 인기</span>
+  </div>
+  <div class="sample" style="font-family: 'MaruBuri', serif;">
+    <p class="sample-date">2027 · 01 · 10</p>
+    <h1 class="sample-names">전홍기<span class="sample-heart">♥</span>지세리</h1>
+    <p class="sample-venue">라루체웨딩홀 루아르홀</p>
+    <div class="sample-divider"></div>
+    <p class="sample-invite">가장 차가운 계절 한가운데서<br>가장 따뜻한 순간을 만들려 합니다.</p>
+    <p class="sample-alphabet">결혼합니다 · 초대합니다 · 함께해요</p>
+  </div>
+</div>
+
+<!-- RIDIBatang -->
+<div class="note-card">
+  <div class="card-label">
+    <span class="card-label-name">리디바탕 (RIDIBatang)</span>
+    <span class="card-label-tag">전자책 감성 · 깔끔함</span>
+  </div>
+  <p class="note-body">
+    리디북스가 배포한 명조체로, e북에 최적화된 만큼 <b>작은 글씨에서도 가독성이 뛰어나고 획이 단정</b>합니다. 화려하진 않지만 "정갈하고 신뢰감 있는" 느낌을 주고 싶을 때 업체들이 자주 씁니다.
+    <br><br>
+    실제 모양은 <a href="https://noonnu.cc/font_page/324" target="_blank">눈누 리디바탕 페이지</a>에서 직접 문구를 입력해 미리 볼 수 있어요.
+  </p>
+  <span class="note-flag">⚠️ 이 폰트는 구글 폰트가 아니라, 지금 이 미리보기 파일엔 실제 폰트로 못 띄워드렸어요.</span>
+</div>
+
+<!-- Ownglyph Bakdahyun -->
+<div class="note-card">
+  <div class="card-label">
+    <span class="card-label-name">온글잎 박다현체</span>
+    <span class="card-label-tag">손글씨 감성 · 포인트용</span>
+  </div>
+  <p class="note-body">
+    산돌이 배포한 손글씨 스타일 폰트예요. 본문 전체보단 <b>신랑·신부 이름이나 짧은 문구 한 줄에 포인트로</b> 많이 쓰입니다. 따뜻하고 개인적인 느낌을 주고 싶을 때 잘 맞아요.
+    <br><br>
+    실제 모양은 <a href="https://noonnu.cc/font_page/1541" target="_blank">눈누 온글잎 박다현체 페이지</a>에서 확인하실 수 있어요.
+  </p>
+  <span class="note-flag">⚠️ 이 폰트도 구글 폰트가 아니라, 지금 이 미리보기 파일엔 실제 폰트로 못 띄워드렸어요.</span>
+</div>
+
+</body>
+</html>
