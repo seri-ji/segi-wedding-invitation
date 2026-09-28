@@ -7,6 +7,15 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600&family=Noto+Sans+KR:wght@300;400;500&display=swap');
 
+  @font-face {
+    font-family: 'RIDIBatang-subset';
+    src: url('https://cdn.jsdelivr.net/gh/TetraTheta/RIDIBatang-subset/dist/webfont/RIDIBatang-subset.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/TetraTheta/RIDIBatang-subset/dist/webfont/RIDIBatang-subset.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
@@ -25,7 +34,7 @@
   body {
     background: var(--cream);
     color: var(--text);
-    font-family: 'Noto Serif KR', serif;
+    font-family: 'RIDIBatang-subset', 'Noto Serif KR', serif;
     max-width: 480px;
     margin: 0 auto;
     position: relative;
@@ -780,7 +789,7 @@
     padding: 48px 32px 64px;
     background: var(--deep);
     color: rgba(250,240,232,0.6);
-    font-family: 'Noto Serif KR', serif;
+    font-family: 'RIDIBatang-subset', 'Noto Serif KR', serif;
   }
 
   .footer-names {
@@ -1283,7 +1292,7 @@
     소중한 분들께 청첩장을 전해주세요
   </p>
   <div class="share-btns">
-    <button class="btn-share btn-kakao" onclick="shareKakao()">
+    <button class="btn-share btn-kakao" id="kakaoShareBtn" onclick="shareKakao()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.477 3 2 6.477 2 10.727c0 2.67 1.46 5.03 3.686 6.508L4.68 21l4.26-2.2c.996.274 2.055.422 3.06.422 5.523 0 10-3.477 10-7.773C22 6.477 17.523 3 12 3z"/></svg>
       <span data-i18n="shareKakao">카카오톡으로 공유하기</span>
     </button>
@@ -1303,20 +1312,9 @@
 <!-- Toast -->
 <div class="toast" id="toast"></div>
 
-<script src="https://t1.kakaocdn.net/kakaolink/sdk.js"></script>
 <script>
-  // ── 카카오톡 공유 설정 ──
-  // 카카오 개발자(https://developers.kakao.com) 앱의 JavaScript 키를 입력하세요.
-  const KAKAO_JS_KEY = '';
-  const SHARE_PAGE_URL = 'https://seri-ji.github.io/segi-wedding-invitation/';
-
-  function initKakao() {
-    if (!KAKAO_JS_KEY) return;
-    if (!window.Kakao) return;
-    if (!Kakao.isInitialized()) Kakao.init(KAKAO_JS_KEY);
-  }
-
-  initKakao();
+  // ── 공유 설정 ──
+  const SHARE_PAGE_URL = 'https://seri-ji.github.io/segi-wedding-invitation/index.html';
 
   // ── 다국어 ──
   const I18N = {
@@ -1382,12 +1380,8 @@
       toastAccountCopied: '계좌번호가 복사되었습니다',
       toastLinkCopied: '링크가 복사되었습니다',
       toastLinkFail: '링크를 복사하지 못했습니다',
-      toastKakaoKey: '카카오 JavaScript 키를 설정해 주세요',
-      toastKakaoSdk: '카카오 SDK를 불러오지 못했습니다',
-      toastKakaoFail: '카카오톡 공유에 실패했습니다',
       kakaoShareTitle: '전홍기 ♥ 지세리 결혼합니다',
       kakaoShareDesc: '2027년 01월 10일 일요일 오후 1시\n라루체웨딩홀 루아르홀',
-      kakaoShareBtn: '청첩장 보기',
     },
     en: {
       pageTitle: 'Honggi Jeon ♥ Seri Ji Wedding',
@@ -1451,12 +1445,8 @@
       toastAccountCopied: 'Account number copied',
       toastLinkCopied: 'Link copied',
       toastLinkFail: 'Failed to copy link',
-      toastKakaoKey: 'Please set your Kakao JavaScript key',
-      toastKakaoSdk: 'Failed to load Kakao SDK',
-      toastKakaoFail: 'Failed to share via KakaoTalk',
       kakaoShareTitle: 'Honggi Jeon ♥ Seri Ji Wedding',
       kakaoShareDesc: 'Sunday, January 10, 2027 · 1:00 PM\nLa Luce Wedding Hall · Luar Hall',
-      kakaoShareBtn: 'View invitation',
     },
     ja: {
       pageTitle: '全弘基 ♥ 池世莉 結婚式',
@@ -1520,12 +1510,8 @@
       toastAccountCopied: '口座番号をコピーしました',
       toastLinkCopied: 'リンクをコピーしました',
       toastLinkFail: 'リンクのコピーに失敗しました',
-      toastKakaoKey: 'カカオ JavaScript キーを設定してください',
-      toastKakaoSdk: 'カカオ SDKの読み込みに失敗しました',
-      toastKakaoFail: 'カカオトーク共有に失敗しました',
       kakaoShareTitle: '全弘基 ♥ 池世莉 結婚式',
       kakaoShareDesc: '2027年1月10日（日）午後1時\nラルーチェウェディングホール ルアールホール',
-      kakaoShareBtn: '招待状を見る',
     },
   };
 
@@ -1558,6 +1544,9 @@
 
     const accountSection = document.getElementById('account');
     if (accountSection) accountSection.style.display = lang === 'ko' ? '' : 'none';
+
+    const kakaoShareBtn = document.getElementById('kakaoShareBtn');
+    if (kakaoShareBtn) kakaoShareBtn.style.display = lang === 'ko' ? '' : 'none';
 
     if (typeof renderGallery === 'function') renderGallery();
     if (typeof renderInfoPanel === 'function') renderInfoPanel();
@@ -1876,57 +1865,27 @@ https://drive.google.com/file/d/1Daj9wrFQQIS8VVmTjlX76xfudfQUjoFh/view?usp=shari
   }
 
   // Share
-  function getShareUrl() {
-    const { protocol, hostname, href } = window.location;
-    if (protocol === 'file:' || hostname === 'localhost' || hostname === '127.0.0.1') {
-      return SHARE_PAGE_URL;
-    }
-    return href.split('#')[0];
-  }
-
-  function shareKakao() {
-    if (!KAKAO_JS_KEY) {
-      showToast(t('toastKakaoKey'));
-      return;
-    }
-    if (!window.Kakao || !Kakao.isInitialized()) {
-      initKakao();
-    }
-    if (!window.Kakao || !Kakao.isInitialized()) {
-      showToast(t('toastKakaoSdk'));
+  async function shareKakao() {
+    // 카카오 개발자 키 없이도 동작하도록, 기기의 기본 공유 시트(카카오톡 포함)를 사용합니다.
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: t('kakaoShareTitle'),
+          text: t('kakaoShareDesc'),
+          url: SHARE_PAGE_URL,
+        });
+      } catch (err) {
+        if (err && err.name !== 'AbortError') copyLink();
+      }
       return;
     }
 
-    const shareUrl = getShareUrl();
-    const shareImage = GALLERY_IMAGES[0]?.src || SHARE_PAGE_URL;
-
-    Kakao.Share.sendDefault({
-      objectType: 'feed',
-      content: {
-        title: t('kakaoShareTitle'),
-        description: t('kakaoShareDesc'),
-        imageUrl: shareImage,
-        link: {
-          mobileWebUrl: shareUrl,
-          webUrl: shareUrl,
-        },
-      },
-      buttons: [
-        {
-          title: t('kakaoShareBtn'),
-          link: {
-            mobileWebUrl: shareUrl,
-            webUrl: shareUrl,
-          },
-        },
-      ],
-    }).catch(() => {
-      showToast(t('toastKakaoFail'));
-    });
+    // 공유 시트를 지원하지 않는 브라우저(주로 PC)에서는 링크 복사로 대신합니다.
+    copyLink();
   }
 
   function copyLink() {
-    navigator.clipboard.writeText(window.location.href).then(() => {
+    navigator.clipboard.writeText(SHARE_PAGE_URL).then(() => {
       showToast(t('toastLinkCopied'));
     }).catch(() => showToast(t('toastLinkFail')));
   }
