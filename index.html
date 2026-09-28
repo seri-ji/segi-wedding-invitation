@@ -48,7 +48,7 @@
   .cover-img {
     position: absolute;
     inset: 0;
-    background: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80') center/cover no-repeat;
+    background: url('https://lh3.googleusercontent.com/d/1E0VTeS3UT6i6Um7z8ZTG3XxWWOhroEL-?w=800&q=80') center/cover no-repeat;
     filter: brightness(0.72) saturate(0.85);
   }
 
@@ -225,22 +225,191 @@
 
   .btn-contact:hover { background: var(--light); }
 
-  /* ── Gallery ── */
-  .gallery-grid {
+  /* ── Gallery / Journey timeline ── */
+  .journey-intro {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--muted);
+    margin: -16px 0 28px;
+    word-break: keep-all;
+    line-height: 1.8;
+  }
+
+  .journey {
+    position: relative;
+    padding-left: 4px;
+  }
+
+  .journey::before {
+    content: '';
+    position: absolute;
+    top: 18px;
+    bottom: 18px;
+    left: 19px;
+    width: 1px;
+    background: linear-gradient(to bottom, rgba(184, 147, 106, 0.15), var(--gold), rgba(184, 147, 106, 0.15));
+  }
+
+  .journey-stop {
+    position: relative;
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    column-gap: 12px;
+    margin-bottom: 18px;
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  .reveal.visible .journey-stop {
+    animation: journeyIn 0.55s ease forwards;
+  }
+
+  .reveal.visible .journey-stop:nth-child(1) { animation-delay: 0.05s; }
+  .reveal.visible .journey-stop:nth-child(2) { animation-delay: 0.12s; }
+  .reveal.visible .journey-stop:nth-child(3) { animation-delay: 0.19s; }
+  .reveal.visible .journey-stop:nth-child(4) { animation-delay: 0.26s; }
+  .reveal.visible .journey-stop:nth-child(5) { animation-delay: 0.33s; }
+  .reveal.visible .journey-stop:nth-child(6) { animation-delay: 0.40s; }
+  .reveal.visible .journey-stop:nth-child(7) { animation-delay: 0.47s; }
+
+  @keyframes journeyIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .journey-rail {
+    display: flex;
+    justify-content: center;
+    padding-top: 14px;
+    z-index: 1;
+  }
+
+  .journey-marker {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 1px solid rgba(184, 147, 106, 0.45);
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(61, 43, 31, 0.08);
+  }
+
+  .journey-marker svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .journey-stop:hover .journey-marker:not(.is-destination) {
+    animation: planeWiggle 0.45s ease;
+  }
+
+  .journey-marker.is-destination {
+    background: var(--gold);
+    color: var(--white);
+    border-color: var(--gold);
+  }
+
+  @keyframes planeWiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-14deg); }
+    75% { transform: rotate(10deg); }
+  }
+
+  .journey-card {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px;
+    background: var(--white);
+    border: 1px solid rgba(184, 147, 106, 0.22);
+    border-radius: 14px;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    color: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .journey-card:hover,
+  .journey-stop.open .journey-card {
+    border-color: rgba(184, 147, 106, 0.5);
+    box-shadow: 0 6px 18px rgba(61, 43, 31, 0.06);
+  }
+
+  .journey-thumb {
+    width: 72px;
+    height: 72px;
+    border-radius: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: var(--light);
+  }
+
+  .journey-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .journey-meta { min-width: 0; flex: 1; }
+
+  .journey-city {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--deep);
+    letter-spacing: 0.04em;
+  }
+
+  .journey-sub {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  .journey-count {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+    margin-top: 8px;
+  }
+
+  .journey-photos {
+    grid-column: 2;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 4px;
-    border-radius: 8px;
+    max-height: 0;
     overflow: hidden;
+    opacity: 0;
+    margin-top: 0;
+    border-radius: 8px;
+    transition: max-height 0.35s ease, opacity 0.25s ease, margin-top 0.25s ease;
+  }
+
+  .journey-stop.open .journey-photos {
+    max-height: 1200px;
+    opacity: 1;
+    margin-top: 10px;
   }
 
   .gallery-item {
     aspect-ratio: 1;
     overflow: hidden;
     cursor: pointer;
+    background: var(--light);
+    min-width: 0;
   }
 
   .gallery-item img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -248,9 +417,6 @@
   }
 
   .gallery-item:hover img { transform: scale(1.05); }
-
-  .gallery-main {
-  }
 
   /* ── Schedule ── */
   .schedule-card {
@@ -802,7 +968,7 @@
     left: 50%;
     transform: translateX(-50%) translateY(80px);
     background: var(--deep);
-    color: rgba(250,240,232,0.9);
+    color: rgba(255, 255, 255, 0.9);
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 13px;
     padding: 12px 24px;
@@ -857,11 +1023,6 @@
 <section id="invitation" class="reveal">
   <p class="section-label" data-i18n="sectionInvitation">INVITATION</p>
   <p class="invitation-text" data-i18n-html="invitationHtml">
-    서로가 마주보며 다져온 사랑을<br>
-    이제 함께 한 곳을 바라보며<br>
-    걸어가고자 합니다.<br><br>
-    저희 두 사람이 사랑을 약속하는<br>
-    첫 걸음을 함께해 주세요.
   </p>
 
   <div class="couple-block">
@@ -903,7 +1064,8 @@
 <!-- Gallery -->
 <section id="gallery" class="reveal">
   <p class="section-label" data-i18n="sectionGallery">GALLERY</p>
-  <div class="gallery-grid" id="galleryGrid"></div>
+  <p class="journey-intro" data-i18n="journeyIntro">두 사람이 함께한 여행의 기록</p>
+  <div class="journey" id="galleryJourney"></div>
 </section>
 
 <!-- Lightbox -->
@@ -1103,7 +1265,7 @@
       sectionLocation: 'LOCATION',
       sectionAccount: 'ACCOUNT',
       sectionShare: 'SHARE',
-      invitationHtml: '서로가 마주보며 다져온 사랑을<br>이제 함께 한 곳을 바라보며<br>걸어가고자 합니다.<br><br>저희 두 사람이 사랑을 약속하는<br>첫 걸음을 함께해 주세요.',
+      invitationHtml: '밝고 씩씩하게 앞장서는 돌고래 같은 그녀와<br>호기심 많고 자유로운 물개 같은 그가<br><br>가장 차가운 계절 한가운데서<br>가장 따뜻한 순간을 만들려 합니다.<br><br>만난 지 2년째 되는 날,<br>서로의 곁에서 함께 헤엄쳐 나가기로 한<br>두 사람의 활기찬 첫걸음을<br>가까이서 지켜봐 주시면 감사하겠습니다.<br>',
       groomParents: '전유기 · 박정금의 아들',
       brideParents: '지종선 · 이서진의 딸',
       contactGroom: '신랑',
@@ -1142,6 +1304,8 @@
       shareLink: '🔗 링크 복사하기',
       footerDate: '2027년 01월 10일 일요일 오후 1시',
       galleryAlt: '웨딩 사진',
+      journeyIntro: '두 사람이 함께한 여행의 기록',
+      journeyPhotos: '{n}장의 사진',
       toastAccountCopied: '계좌번호가 복사되었습니다',
       toastLinkCopied: '링크가 복사되었습니다',
       toastLinkFail: '링크를 복사하지 못했습니다',
@@ -1164,9 +1328,9 @@
       sectionLocation: 'LOCATION',
       sectionAccount: 'ACCOUNT',
       sectionShare: 'SHARE',
-      invitationHtml: 'With love nurtured face to face,<br>we now wish to walk together<br>looking toward the same horizon.<br><br>Please join us as we take<br>our first step in marriage.',
-      groomParents: 'Son of Yugi Jeon & Jeonggeum Park',
-      brideParents: 'Daughter of Jongseon Ji & Seojin Lee',
+      invitationHtml: 'Like a dolphin, bright and bold, leading the way,<br>and a seal, curious and free —<br><br>in the coldest season of the year,<br>they are about to create the warmest of moments.<br><br>On the day that marks two years since they met,<br>they have chosen to swim forward, side by side,<br>and this lively first step they take together —<br>we would be so grateful if you could join us to witness it.<br>',
+      groomParents: 'Son of Yugi & Jeonggeum',
+      brideParents: 'Daughter of Jongseon & Seojin',
       contactGroom: 'Groom',
       contactBride: 'Bride',
       call: '📞 Call',
@@ -1203,6 +1367,8 @@
       shareLink: '🔗 Copy link',
       footerDate: 'Sunday, January 10, 2027 · 1:00 PM',
       galleryAlt: 'Wedding photo',
+      journeyIntro: 'A record of the journeys we took together',
+      journeyPhotos: '{n} photos',
       toastAccountCopied: 'Account number copied',
       toastLinkCopied: 'Link copied',
       toastLinkFail: 'Failed to copy link',
@@ -1225,7 +1391,7 @@
       sectionLocation: 'LOCATION',
       sectionAccount: 'ACCOUNT',
       sectionShare: 'SHARE',
-      invitationHtml: '向き合いながら育んだ愛を胸に、<br>これからは同じ未来を見つめて<br>歩んでいきたいと思います。<br><br>私たちの結婚という第一歩に<br>ぜひご出席ください。',
+      invitationHtml: '明るく元気に先を行くイルカのような彼女と<br>好奇心旺盛で自由なアザラシのような彼が<br><br>一年で最も寒い季節の真ん中で<br>最も温かな瞬間を作ろうとしています。<br><br>出会って2年目となる日、<br>互いの側で共に泳ぎ出すことを決めた<br>二人の元気な第一歩を<br>どうぞ近くで見守っていただけますと幸いです。<br>',
       groomParents: '全有基 · 朴正琴の息子',
       brideParents: '池鍾善 · 李瑞珍の娘',
       contactGroom: '新郎',
@@ -1264,6 +1430,8 @@
       shareLink: '🔗 リンクをコピー',
       footerDate: '2027年1月10日（日）午後1時',
       galleryAlt: 'ウェディング写真',
+      journeyIntro: '二人が一緒に歩いた旅の記録',
+      journeyPhotos: '{n}枚の写真',
       toastAccountCopied: '口座番号をコピーしました',
       toastLinkCopied: 'リンクをコピーしました',
       toastLinkFail: 'リンクのコピーに失敗しました',
@@ -1306,49 +1474,126 @@
     if (typeof renderGallery === 'function') renderGallery();
   }
 
-  // ── 갤러리 사진 목록 (여기에만 추가/수정) ──
-  const GALLERY_IMAGES = [
-    { src: 'https://lh3.googleusercontent.com/d/1LA1ghLADQZRmGkh_0h7POztSqW-W_9kl?w=800&q=80', alt: '웨딩 사진 2' },
-    { src: 'https://lh3.googleusercontent.com/d/1oId7yM7N93ES9iMPIlfXoL5VpG5uNMYo?w=800&q=80', alt: '웨딩 사진 3' },
-    { src: 'https://lh3.googleusercontent.com/d/1Zle3i6DJBlR9Ur-O-leFx22Xq0vj8KVl?w=800&q=80', alt: '웨딩 사진 4' },
-    { src: 'https://lh3.googleusercontent.com/d/18wR8IN4_YbSz9f9YWAaScveZrVnrd-2w?w=800&q=80', alt: '웨딩 사진 5' },
-    { src: 'https://lh3.googleusercontent.com/d/1vSqyoHQoxEWkZaTiISKXfzwMNHWBQfps?w=800&q=80', alt: '웨딩 사진 6' },
-    { src: 'https://lh3.googleusercontent.com/d/1WzRZP1EvCdXl3J1pGTrH9Ey3LuM9T6or?w=800&q=80', alt: '웨딩 사진 7' },
-    { src: 'https://lh3.googleusercontent.com/d/1-iriXLZ6DlfwsQEjeT0EuPrj5Nv7SY05?w=800&q=80', alt: '웨딩 사진 8' },
-    { src: 'https://lh3.googleusercontent.com/d/1dUBfeqycsPjDY9Nmbyoq5_j64TO3GplL?w=800&q=80', alt: '웨딩 사진 9' },
-    { src: 'https://lh3.googleusercontent.com/d/1zr1hEFfKp73Bpi2rGOeTXyMnwdeDz_1f?w=800&q=80', alt: '웨딩 사진 10' },
-    { src: 'https://lh3.googleusercontent.com/d/12ZFTLxHiFbjIFfh5akuQTZbEIui2bJVT?w=800&q=80', alt: '웨딩 사진 11' },
-    { src: 'https://lh3.googleusercontent.com/d/1jm5CTZGCwUNZTIGaQd_VpaLzeU_jO2xY?w=800&q=80', alt: '웨딩 사진 12' },
-    { src: 'https://lh3.googleusercontent.com/d/1I2WbV7yGlHA0EmGwQMekHjBrRbbG7x9i?w=800&q=80', alt: '웨딩 사진 13' },
-    { src: 'https://lh3.googleusercontent.com/d/1DIKScZwTQtRQj1Zlq7as203MTMQhgwyd?w=800&q=80', alt: '웨딩 사진 14' },
-    { src: 'https://lh3.googleusercontent.com/d/1NsMsYcDxvMfmP_xIonGLfJIOoV6CwiqZ?w=800&q=80', alt: '웨딩 사진 15' },
-    { src: 'https://lh3.googleusercontent.com/d/1abP3GmZxxzQxTMVRcG8rNfQpP9-6idGB?w=800&q=80', alt: '웨딩 사진 16' },
-    { src: 'https://lh3.googleusercontent.com/d/10FWS0Hnr6_cnmdRmz66rjWQlZAzo0nRh?w=800&q=80', alt: '웨딩 사진 17' },
-    { src: 'https://lh3.googleusercontent.com/d/1z-6LCRhOxnpkCm4r3XGxfu_rn6WKepb6?w=800&q=80', alt: '웨딩 사진 18' },
-    { src: 'https://lh3.googleusercontent.com/d/1dwta19GbqiCVVsrlInTRpRaTS1AqossI?w=800&q=80', alt: '웨딩 사진 19' }, 
-    { src: 'https://lh3.googleusercontent.com/d/1yXfGaa_85nXr2GqjL302POdoBV46vrku?w=800&q=80', alt: '웨딩 사진 20' },
-    { src: 'https://lh3.googleusercontent.com/d/1xp5o4SzeHYABo-VgwBi6l4nXSoYR2NX9?w=800&q=80', alt: '웨딩 사진 21' },
-    { src: 'https://lh3.googleusercontent.com/d/1RuOUOg2MgPr6_ZOuzkG2KuXdIOXjFqUJ?w=800&q=80', alt: '웨딩 사진 22' },
-    { src: 'https://lh3.googleusercontent.com/d/1_CZmvNZI4OHLFgqUG18-iELAErC34lsE?w=800&q=80', alt: '웨딩 사진 23' },
-    { src: 'https://lh3.googleusercontent.com/d/1hllW-4ESew9ZEt96Jm4RRo_mQjnbKNlX?w=800&q=80', alt: '웨딩 사진 24' },
-    { src: 'https://lh3.googleusercontent.com/d/1jSf2pS48318rIx75dBZH3G9C8xuBAK5p?w=800&q=80', alt: '웨딩 사진 25' },
-    { src: 'https://lh3.googleusercontent.com/d/1mZC7vRoRI4MZVSWGoBb_35I8qQJsr_zn?w=800&q=80', alt: '웨딩 사진 26' },
-    { src: 'https://drive.google.com/file/d/1OrVduRnrwLIDk6awIlOFypYEtEChUpYp/preview', thumb: 'https://lh3.googleusercontent.com/d/1OrVduRnrwLIDk6awIlOFypYEtEChUpYp?w=800&q=80', alt: '웨딩 사진 22', type: 'video' },
-    { src: 'https://lh3.googleusercontent.com/d/1PZ4SlRmsDAHk5uSHUu97t1RnQsowob5N?w=800&q=80', alt: '웨딩 사진 28' },
+  // ── 여행지 목록 ──
+  const GALLERY_PLACES = [
+    { id: 'jeju', name: { ko: '제주', en: 'Jeju', ja: '済州' }, sub: { ko: '우리가 처음 떠난 섬', en: 'Where our journeys began', ja: '初めて一緒に訪れた島' } },
+    { id: 'tokyo', name: { ko: '도쿄', en: 'Tokyo', ja: '東京' }, sub: { ko: '도시의 밤을 함께 걷던 날', en: 'Nights walking the city together', ja: '街の夜を一緒に歩いた日' } },
+    { id: 'turkey', name: { ko: '터키', en: 'Türkiye', ja: 'トルコ' }, sub: { ko: '멀리 날아가 마주한 풍경', en: 'Landscapes we flew far to see', ja: '遠く飛んで出会った景色' } },
+    { id: 'egypt', name: { ko: '이집트', en: 'Egypt', ja: 'エジプト' }, sub: { ko: '오래된 시간 앞에서', en: 'Standing before ancient time', ja: '古い時間の前で' } },
+    { id: 'dubai', name: { ko: '두바이', en: 'Dubai', ja: 'ドバイ' }, sub: { ko: '사막 위의 또다른 하늘', en: 'Another sky above the desert', ja: '砂漠の上のもう一つの空' } },
+    { id: 'gongju', name: { ko: '공주', en: 'Gongju', ja: '公州' }, sub: { ko: '가까운 곳에서 머문 계절', en: 'A season spent close to home', ja: '近くで過ごした季節' } },
+    { id: 'laluce', name: { ko: '라루체', en: 'La Luce', ja: 'ラルーチェ' }, sub: { ko: '우리의 다음 여정, 결혼식', en: 'Our next journey — the wedding', ja: '次の旅、結婚式' } },
   ];
 
+  const PLANE_ICON = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 00-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5L21 16z"/></svg>';
+  const HEART_ICON = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-6.7-4.35-9.33-8.2C.7 9.7 2.1 6 5.5 6c1.9 0 3.1 1.1 3.9 2.2C10.3 7.1 11.5 6 13.4 6c3.4 0 4.8 3.7 2.83 6.8C18.7 16.65 12 21 12 21z"/></svg>';
+
+  // ── 갤러리 사진 목록 (place만 바꿔 여행지를 지정) ──
+  // place: jeju | tokyo | turkey | egypt | dubai | gongju | laluce
+  const GALLERY_IMAGES = [
+    { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/1Gk7C-Y5wBlTMh0l_ZCTIPPKbIKAFYiEw?w=800&q=80'},
+    { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/12CD7PagT2AvEmeE6bB8bDEPdhjW12dYU?w=800&q=80'},
+    { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/1Vogsp-jcXU2zX1e_QMq-bjXz0gxR4qVw?w=800&q=80'},
+    { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/120Tth1D9qEy3_mwuWchjWaPLxkThRMZB?w=800&q=80'},
+    { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/1sW4Ui7BRkaTgM4-DabNlctDrqPh9rB5I?w=800&q=80'},
+    { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/1iAti4CS0KWbIEgCds7PgCqT8oCx7ssCq?w=800&q=80'},
+    { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/1R6nUGdCAYs5idnZ1ATg9p0OI6oPXypDc?w=800&q=80'},
+    { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/1_4oA4cnRdYCrqDvwIYeCQNhpejtq9SUI?w=800&q=80'},
+    { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/1nE9wKbJAe8zsG-mmj8_F-uWIH1fAbi_c?w=800&q=80'},
+    { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/1szCOgQ3H3LlGN6J8kO55oHzFCEjN6x5p?w=800&q=80'},
+    { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/1sGP62x6qVk_qRQq_PW43MH-lZKnKqzTW?w=800&q=80'},
+    { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/1mLoAcbmgCAfL7HpVQ_3kyF6NiuIOo-wB?w=800&q=80'},
+    { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/1au7D-LUKaB1mcQ0CoKKku7X6vKL3uLgf?w=800&q=80'},
+    { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/1TG8ElID5Shsv173gM2TjBoibiPlhjayX?w=800&q=80'},
+    { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/1RdEuF4hodnP6UmYsBZ7vGy15nH1IflUq?w=800&q=80'},
+    { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/1X00T--levPsvnkLY5VqApNpxGa55Hin9?w=800&q=80'},
+    { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/1E0VTeS3UT6i6Um7z8ZTG3XxWWOhroEL-?w=800&q=80'},
+    { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/1Q9RQp5qDszrEtKbOnuyzZEHdatG6WjY2?w=800&q=80'},
+    { place: 'tokyo', src: 'https://lh3.googleusercontent.com/d/13Vb_PN0B0wMRMBAXb2433D6j4_uxNpsq?w=800&q=80'},
+    { place: 'tokyo', src: 'https://lh3.googleusercontent.com/d/1vZyi7lNZyvYD2NgAW_fHbLALSFZ9WYXb?w=800&q=80'},
+    { place: 'tokyo', src: 'https://lh3.googleusercontent.com/d/1urBJ0y3v_zchFPeChUxYaQpNdDQFCsxE?w=800&q=80'},
+    { place: 'tokyo', src: 'https://lh3.googleusercontent.com/d/16tQqmPV3XLGdx5Eb0_4dxDOPm2JSZTwC?w=800&q=80'},
+    { place: 'tokyo', src: 'https://lh3.googleusercontent.com/d/1WxkLAadT1HuCkAxY3zjpnt7q5UnTNtIx?w=800&q=80'},
+    { place: 'tokyo', src: 'https://lh3.googleusercontent.com/d/1wWrrHkXx_-HqUx5dL_KaaU6NXglk2_AF?w=800&q=80'},
+    { place: 'tokyo', src: 'https://lh3.googleusercontent.com/d/1kJ8DWImhf5qnAtO6XeHNfnr_ZX_HBzcl?w=800&q=80'},
+    { place: 'tokyo', src: 'https://lh3.googleusercontent.com/d/1dMA1ORTE30N8DTJ5v6NMx46Q4bMeAxdK?w=800&q=80'},
+    { place: 'tokyo', src: 'https://lh3.googleusercontent.com/d/1vsuQ8Zw0tPebuo5bz0_BdoxpdtX4LDdy?w=800&q=80'},
+  
+    { place: 'turkey', src: 'https://lh3.googleusercontent.com/d/1EnkAh_URaX26AjgAoB0_SOcYcnS4YmKm?w=800&q=80'},
+    { place: 'turkey', src: 'https://lh3.googleusercontent.com/d/1ozPEUXK1JyBiJcpluTienYk8sqIT9N8O?w=800&q=80'},
+    { place: 'turkey', src: 'https://lh3.googleusercontent.com/d/14I58IlpzQPGWVuYvWoPpTCq4ICgJuGsy?w=800&q=80'},
+    { place: 'turkey', src: 'https://lh3.googleusercontent.com/d/1nUW_w0JrLLcdIu8kF77WnOu675o_q8lV?w=800&q=80'},
+    { place: 'turkey', src: 'https://drive.google.com/file/d/1OrVduRnrwLIDk6awIlOFypYEtEChUpYp/preview', thumb: 'https://lh3.googleusercontent.com/d/1OrVduRnrwLIDk6awIlOFypYEtEChUpYp?w=800&q=80', type: 'video' },
+
+    { place: 'egypt', src: 'https://lh3.googleusercontent.com/d/1h8gOUisgwohRlmTxgkCbo7VbQ8OVwJb4?w=800&q=80'},
+    { place: 'egypt', src: 'https://lh3.googleusercontent.com/d/11uxrTYR4gKoMaruuj0o_OvmimvUVfcKq?w=800&q=80'},
+    { place: 'egypt', src: 'https://lh3.googleusercontent.com/d/18mXaf3JWJBdAfe1GPfDzhIXEgWeH0FKn?w=800&q=80'},
+    { place: 'egypt', src: 'https://lh3.googleusercontent.com/d/1MMUHz-pxKIX0zPPTyJ6LmMBwNn5cKML_?w=800&q=80'},
+
+    { place: 'dubai', src: 'https://lh3.googleusercontent.com/d/11WbRK550wyFF7rxCyTz2rDns6hH9vwIb?w=800&q=80'},
+    { place: 'dubai', src: 'https://lh3.googleusercontent.com/d/1XRWJZQIDQ7nbwotTbdK3CtVpnPL3O7zB?w=800&q=80'},
+    { place: 'dubai', src: 'https://lh3.googleusercontent.com/d/1qzXUS7qaEM3pYIE6NeALNCjslPHfaAhh?w=800&q=80'},
+
+    { place: 'gongju', src: 'https://lh3.googleusercontent.com/d/1RuOUOg2MgPr6_ZOuzkG2KuXdIOXjFqUJ?w=800&q=80', alt: '웨딩 사진 22' },
+    { place: 'gongju', src: 'https://lh3.googleusercontent.com/d/1_CZmvNZI4OHLFgqUG18-iELAErC34lsE?w=800&q=80', alt: '웨딩 사진 23' },
+    { place: 'gongju', src: 'https://lh3.googleusercontent.com/d/1hllW-4ESew9ZEt96Jm4RRo_mQjnbKNlX?w=800&q=80', alt: '웨딩 사진 24' },
+    { place: 'gongju', src: 'https://lh3.googleusercontent.com/d/1jSf2pS48318rIx75dBZH3G9C8xuBAK5p?w=800&q=80', alt: '웨딩 사진 25' },
+
+    { place: 'laluce', src: 'https://lh3.googleusercontent.com/d/1Daj9wrFQQIS8VVmTjlX76xfudfQUjoFh?w=800&q=80', alt: '웨딩 사진 28' },
+  ];
+/*
+https://drive.google.com/file/d/1Daj9wrFQQIS8VVmTjlX76xfudfQUjoFh/view?usp=sharing
+*/
+
+  let lightboxPlaceId = null;
+  let lightboxItems = GALLERY_IMAGES;
+
+  function imagesForPlace(placeId) {
+    return GALLERY_IMAGES.filter(img => img.place === placeId);
+  }
+
+  function coverSrc(img) {
+    if (!img) return '';
+    return img.type === 'video' ? img.thumb : img.src;
+  }
+
+  function toggleJourney(placeId) {
+    document.querySelectorAll('.journey-stop').forEach(stop => {
+      if (stop.dataset.place === placeId) stop.classList.toggle('open');
+      else stop.classList.remove('open');
+    });
+  }
 
   function renderGallery() {
-    const grid = document.getElementById('galleryGrid');
-    grid.innerHTML = GALLERY_IMAGES.map((img, i) => {
-      if (img.type === 'video') {
-        return `<div class="gallery-item${i === 0 ? ' gallery-main' : ''}" onclick="openLightbox(${i})">
-          <img src="${img.thumb}" alt="${img.alt}" loading="lazy">
+    const root = document.getElementById('galleryJourney');
+    const openPlace = document.querySelector('.journey-stop.open')?.dataset.place;
+
+    root.innerHTML = GALLERY_PLACES.map((place, pi) => {
+      const photos = imagesForPlace(place.id);
+      const cover = coverSrc(photos[0]);
+      const isLast = pi === GALLERY_PLACES.length - 1;
+      const count = t('journeyPhotos').replace('{n}', String(photos.length));
+      const items = photos.map((img, i) => {
+        const src = coverSrc(img);
+        return `<div class="gallery-item" onclick="event.stopPropagation(); openLightbox('${place.id}', ${i})">
+          <img src="${src}" alt="${img.alt || t('galleryAlt') + ' ' + (i + 1)}" loading="${pi === 0 && i === 0 ? 'eager' : 'lazy'}">
         </div>`;
-      }
-      return `<div class="gallery-item${i === 0 ? ' gallery-main' : ''}" onclick="openLightbox(${i})">
-        <img src="${img.src}" alt="${t('galleryAlt')} ${i + 1}" loading="${i === 0 ? 'eager' : 'lazy'}">
-      </div>`;
+      }).join('');
+
+      return `<article class="journey-stop${openPlace === place.id ? ' open' : ''}" data-place="${place.id}">
+        <div class="journey-rail">
+          <span class="journey-marker${isLast ? ' is-destination' : ''}">${isLast ? HEART_ICON : PLANE_ICON}</span>
+        </div>
+        <button class="journey-card" type="button" onclick="toggleJourney('${place.id}')">
+          <div class="journey-thumb">${cover ? `<img src="${cover}" alt="">` : ''}</div>
+          <div class="journey-meta">
+            <p class="journey-city">${place.name[currentLang] || place.name.ko}</p>
+            <p class="journey-sub">${place.sub[currentLang] || place.sub.ko}</p>
+            <p class="journey-count">${count}</p>
+          </div>
+        </button>
+        <div class="journey-photos">${items}</div>
+      </article>`;
     }).join('');
   }
 
@@ -1395,8 +1640,8 @@
   const lightboxViewport = document.getElementById('lightboxViewport');
 
   function showLightboxImage(direction = 0) {
-    const data = GALLERY_IMAGES[lightboxIndex];
-    lightboxCounter.textContent = `${lightboxIndex + 1} / ${GALLERY_IMAGES.length}`;
+    const data = lightboxItems[lightboxIndex];
+    lightboxCounter.textContent = `${lightboxIndex + 1} / ${lightboxItems.length}`;
 
     if (data.type === 'video') {
       lightboxImg.style.display = 'none';
@@ -1416,7 +1661,9 @@
     }
   }
 
-  function openLightbox(index) {
+  function openLightbox(placeId, index) {
+    lightboxPlaceId = placeId;
+    lightboxItems = imagesForPlace(placeId);
     lightboxIndex = index;
     showLightboxImage();
     lightbox.classList.add('open');
@@ -1433,7 +1680,7 @@
   }
 
   function nextLightboxImage() {
-    if (lightboxIndex < GALLERY_IMAGES.length - 1) {
+    if (lightboxIndex < lightboxItems.length - 1) {
       lightboxIndex++;
       showLightboxImage(1);
     }
