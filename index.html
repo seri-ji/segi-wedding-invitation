@@ -97,19 +97,6 @@
     margin-bottom: 40px;
   }
 
-  .scroll-hint {
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.3em;
-    color: rgba(250,240,232,0.55);
-    animation: bounce 2s infinite;
-  }
-
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(6px); }
-  }
-
   /* ── Sections ── */
   section {
     padding: 56px 32px;
@@ -903,7 +890,7 @@
     object-fit: contain;
     border-radius: 4px;
     transition: opacity 0.25s ease, transform 0.25s ease;
-    pointer-events: none;
+    cursor: pointer;
   }
 
   .lightbox img.slide-next {
@@ -1015,7 +1002,6 @@
     <p class="cover-date">2027 · 01 · 10</p>
     <h1 class="cover-names">전홍기<span class="cover-heart">♥</span>지세리</h1>
     <p class="cover-venue" data-i18n="coverVenue">라루체웨딩홀 루아르홀</p>
-    <p class="scroll-hint" data-i18n="scrollHint">SCROLL</p>
   </div>
 </section>
 
@@ -1257,7 +1243,6 @@
       pageTitle: '전홍기 ♥ 지세리 결혼합니다',
       musicAria: '배경음악 켜기/끄기',
       coverVenue: '라루체웨딩홀 루아르홀',
-      scrollHint: 'SCROLL',
       sectionInvitation: 'INVITATION',
       sectionContact: 'CONTACT',
       sectionGallery: 'GALLERY',
@@ -1320,7 +1305,6 @@
       pageTitle: 'Honggi Jeon ♥ Seri Ji Wedding',
       musicAria: 'Toggle background music',
       coverVenue: 'La Luce Wedding Hall · Luar Hall',
-      scrollHint: 'SCROLL',
       sectionInvitation: 'INVITATION',
       sectionContact: 'CONTACT',
       sectionGallery: 'GALLERY',
@@ -1383,7 +1367,6 @@
       pageTitle: '全弘基 ♥ 池世莉 結婚式',
       musicAria: 'BGMのオン/オフ',
       coverVenue: 'ラルーチェウェディングホール ルアールホール',
-      scrollHint: 'SCROLL',
       sectionInvitation: 'INVITATION',
       sectionContact: 'CONTACT',
       sectionGallery: 'GALLERY',
@@ -1476,12 +1459,12 @@
 
   // ── 여행지 목록 ──
   const GALLERY_PLACES = [
-    { id: 'jeju', name: { ko: '제주', en: 'Jeju', ja: '済州' }, sub: { ko: '우리가 처음 떠난 섬', en: 'Where our journeys began', ja: '初めて一緒に訪れた島' } },
-    { id: 'tokyo', name: { ko: '도쿄', en: 'Tokyo', ja: '東京' }, sub: { ko: '도시의 밤을 함께 걷던 날', en: 'Nights walking the city together', ja: '街の夜を一緒に歩いた日' } },
-    { id: 'turkey', name: { ko: '터키', en: 'Türkiye', ja: 'トルコ' }, sub: { ko: '멀리 날아가 마주한 풍경', en: 'Landscapes we flew far to see', ja: '遠く飛んで出会った景色' } },
-    { id: 'egypt', name: { ko: '이집트', en: 'Egypt', ja: 'エジプト' }, sub: { ko: '오래된 시간 앞에서', en: 'Standing before ancient time', ja: '古い時間の前で' } },
+    { id: 'jeju', name: { ko: '제주', en: 'Jeju', ja: '済州' }, sub: { ko: '자연 속에서의 우리', en: 'Where our journeys began', ja: '初めて一緒に訪れた島' } },
+    { id: 'tokyo', name: { ko: '도쿄', en: 'Tokyo', ja: '東京' }, sub: { ko: '세리의 두번째 고향', en: 'Nights walking the city together', ja: '街の夜を一緒に歩いた日' } },
+    { id: 'turkey', name: { ko: '터키', en: 'Türkiye', ja: 'トルコ' }, sub: { ko: '낯설고도 아름다운 순간들', en: 'Landscapes we flew far to see', ja: '遠く飛んで出会った景色' } },
+    { id: 'egypt', name: { ko: '이집트', en: 'Egypt', ja: 'エジプト' }, sub: { ko: '오래된 시간과 깊은 바다', en: 'Standing before ancient time', ja: '古い時間の前で' } },
     { id: 'dubai', name: { ko: '두바이', en: 'Dubai', ja: 'ドバイ' }, sub: { ko: '사막 위의 또다른 하늘', en: 'Another sky above the desert', ja: '砂漠の上のもう一つの空' } },
-    { id: 'gongju', name: { ko: '공주', en: 'Gongju', ja: '公州' }, sub: { ko: '가까운 곳에서 머문 계절', en: 'A season spent close to home', ja: '近くで過ごした季節' } },
+    { id: 'gongju', name: { ko: '공주', en: 'Gongju', ja: '公州' }, sub: { ko: '홍기의 로망, 함께 뛴 우리', en: 'A season spent close to home', ja: '近くで過ごした季節' } },
     { id: 'laluce', name: { ko: '라루체', en: 'La Luce', ja: 'ラルーチェ' }, sub: { ko: '우리의 다음 여정, 결혼식', en: 'Our next journey — the wedding', ja: '次の旅、結婚式' } },
   ];
 
@@ -1695,6 +1678,14 @@ https://drive.google.com/file/d/1Daj9wrFQQIS8VVmTjlX76xfudfQUjoFh/view?usp=shari
 
   lightbox.addEventListener('click', function(e) {
     if (e.target === this || e.target === lightboxViewport) closeLightbox();
+  });
+
+  lightboxImg.addEventListener('click', function(e) {
+    e.stopPropagation();
+    const rect = lightboxImg.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    if (clickX < rect.width / 2) prevLightboxImage();
+    else nextLightboxImage();
   });
 
   lightboxViewport.addEventListener('touchstart', e => {
