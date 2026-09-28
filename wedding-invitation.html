@@ -41,6 +41,14 @@
     overflow-x: hidden;
   }
 
+  rt {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 400;
+    color: inherit;
+    opacity: 0.6;
+    letter-spacing: 0;
+  }
+
   /* ── Cover ── */
   .cover {
     position: relative;
@@ -1066,7 +1074,7 @@
   <div class="cover-overlay"></div>
   <div class="cover-content">
     <p class="cover-date">2027 · 01 · 10</p>
-    <h1 class="cover-names">전홍기<span class="cover-heart">♥</span>지세리</h1>
+    <h1 class="cover-names" data-i18n-html="coverNamesHtml">전홍기<span class="cover-heart">♥</span>지세리</h1>
     <p class="cover-venue" data-i18n="coverVenue">라루체웨딩홀 루아르홀</p>
   </div>
 </section>
@@ -1080,12 +1088,12 @@
   <div class="couple-block">
     <div class="person">
       <p class="person-parents" data-i18n="groomParents">전유기 · 박정금의 아들</p>
-      <p class="person-name">전 홍 기</p>
+      <p class="person-name" data-i18n-html="groomNameHtml">전 홍 기</p>
     </div>
     <div class="couple-divider">♥</div>
     <div class="person">
       <p class="person-parents" data-i18n="brideParents">지종선 · 이서진의 딸</p>
-      <p class="person-name">지 세 리</p>
+      <p class="person-name" data-i18n-html="brideNameHtml">지 세 리</p>
     </div>
   </div>
 </section>
@@ -1096,18 +1104,18 @@
   <div class="contact-grid">
     <div class="contact-card">
       <p class="contact-role" data-i18n="contactGroom">신랑</p>
-      <p class="contact-name">전홍기</p>
+      <p class="contact-name" data-i18n-html="contactNameGroomHtml">전홍기</p>
       <div class="contact-btns">
         <a href="tel:010-8618-8603" class="btn-contact" data-i18n="call">📞 전화</a>
-        <a href="sms:010-8618-8603" class="btn-contact" data-i18n="sms">💬 문자</a>
+        <a href="sms:010-8618-8603" class="btn-contact sms-btn" data-i18n="sms">💬 문자</a>
       </div>
     </div>
     <div class="contact-card">
       <p class="contact-role" data-i18n="contactBride">신부</p>
-      <p class="contact-name">지세리</p>
+      <p class="contact-name" data-i18n-html="contactNameBrideHtml">지세리</p>
       <div class="contact-btns">
         <a href="tel:010-4868-7897" class="btn-contact" data-i18n="call">📞 전화</a>
-        <a href="sms:010-4868-7897" class="btn-contact" data-i18n="sms">💬 문자</a>
+        <a href="sms:010-4868-7897" class="btn-contact sms-btn" data-i18n="sms">💬 문자</a>
       </div>
     </div>
   </div>
@@ -1166,7 +1174,7 @@
     <span data-i18n-html="addressHtml">서울특별시 중구 퇴계로18길 46<br>라루체웨딩홀 4층 루아르홀</span>
   </div>
   <div class="map-btns">
-    <a href="#" class="btn-map" data-i18n="mapKakao">카카오맵</a>
+    <a href="https://map.kakao.com/?itemId=8586977&urlX=496566&urlY=1127664" target="_blank" rel="noopener" class="btn-map" data-i18n="mapKakao">카카오맵</a>
     <a href="https://naver.me/IgJGrKmE" class="btn-map" data-i18n="mapNaver">네이버지도</a>
     <a href="#" class="btn-map" data-i18n="mapTmap">T맵</a>
   </div>
@@ -1304,7 +1312,7 @@
 
 <!-- Footer -->
 <footer class="footer">
-  <p class="footer-names">전홍기 ♥ 지세리</p>
+  <p class="footer-names" data-i18n-html="footerNamesHtml">전홍기 ♥ 지세리</p>
   <p class="footer-date" data-i18n="footerDate">2027년 01월 10일 일요일 오후 1시</p>
   <p class="footer-venue" data-i18n="coverVenue">라루체웨딩홀 루아르홀</p>
 </footer>
@@ -1322,6 +1330,12 @@
       pageTitle: '전홍기 ♥ 지세리 결혼합니다',
       musicAria: '배경음악 켜기/끄기',
       coverVenue: '라루체웨딩홀 루아르홀',
+      coverNamesHtml: '전홍기<span class="cover-heart">♥</span>지세리',
+      groomNameHtml: '전 홍 기',
+      brideNameHtml: '지 세 리',
+      contactNameGroomHtml: '전홍기',
+      contactNameBrideHtml: '지세리',
+      footerNamesHtml: '전홍기 ♥ 지세리',
       sectionInvitation: 'INVITATION',
       sectionContact: 'CONTACT',
       sectionGallery: 'GALLERY',
@@ -1384,9 +1398,15 @@
       kakaoShareDesc: '2027년 01월 10일 일요일 오후 1시\n라루체웨딩홀 루아르홀',
     },
     en: {
-      pageTitle: 'Honggi Jeon ♥ Seri Ji Wedding',
+      pageTitle: 'Hong-gi Jeon ♥ Seri Ji Wedding',
       musicAria: 'Toggle background music',
       coverVenue: 'La Luce Wedding Hall · Luar Hall',
+      coverNamesHtml: 'Hong-gi Jeon<span class="cover-heart">♥</span>Seri Ji',
+      groomNameHtml: 'Hong-gi Jeon',
+      brideNameHtml: 'Seri Ji',
+      contactNameGroomHtml: 'Hong-gi Jeon',
+      contactNameBrideHtml: 'Seri Ji',
+      footerNamesHtml: 'Hong-gi Jeon ♥ Seri Ji',
       sectionInvitation: 'INVITATION',
       sectionContact: 'CONTACT',
       sectionGallery: 'GALLERY',
@@ -1427,7 +1447,7 @@
       accountIntroHtml: 'Your presence is the greatest gift.<br>For those unable to attend,<br>we share our account details below.',
       accountGroomSide: "Groom's Side",
       accountBrideSide: "Bride's Side",
-      holderGroom: 'Honggi Jeon',
+      holderGroom: 'Hong-gi Jeon',
       holderGroomFather: 'Yugi Jeon (Groom\'s father)',
       holderGroomMother: 'Jeonggeum Park (Groom\'s mother)',
       holderBride: 'Seri Ji',
@@ -1445,13 +1465,19 @@
       toastAccountCopied: 'Account number copied',
       toastLinkCopied: 'Link copied',
       toastLinkFail: 'Failed to copy link',
-      kakaoShareTitle: 'Honggi Jeon ♥ Seri Ji Wedding',
+      kakaoShareTitle: 'Hong-gi Jeon ♥ Seri Ji Wedding',
       kakaoShareDesc: 'Sunday, January 10, 2027 · 1:00 PM\nLa Luce Wedding Hall · Luar Hall',
     },
     ja: {
-      pageTitle: '全弘基 ♥ 池世莉 結婚式',
+      pageTitle: '全　洪基 ♥ 池　世理 結婚式',
       musicAria: 'BGMのオン/オフ',
       coverVenue: 'ラルーチェウェディングホール ルアールホール',
+      coverNamesHtml: '<ruby>全　洪基<rt>ジョン　ホンギ</rt></ruby><span class="cover-heart">♥</span><ruby>池　世理<rt>ジ　セリ</rt></ruby>',
+      groomNameHtml: '<ruby>全　洪基<rt>ジョン　ホンギ</rt></ruby>',
+      brideNameHtml: '<ruby>池　世理<rt>ジ　セリ</rt></ruby>',
+      contactNameGroomHtml: '<ruby>全　洪基<rt>ジョン　ホンギ</rt></ruby>',
+      contactNameBrideHtml: '<ruby>池　世理<rt>ジ　セリ</rt></ruby>',
+      footerNamesHtml: '<ruby>全　洪基<rt>ジョン　ホンギ</rt></ruby> ♥ <ruby>池　世理<rt>ジ　セリ</rt></ruby>',
       sectionInvitation: 'INVITATION',
       sectionContact: 'CONTACT',
       sectionGallery: 'GALLERY',
@@ -1492,10 +1518,10 @@
       accountIntroHtml: 'お気持ちだけで十分です。<br>ご出席が難しい方のために<br>口座情報をご案内いたします。',
       accountGroomSide: '新郎側',
       accountBrideSide: '新婦側',
-      holderGroom: '全弘基',
+      holderGroom: '全　洪基',
       holderGroomFather: '全有基（新郎の父）',
       holderGroomMother: '朴正琴（新郎の母）',
-      holderBride: '池世莉',
+      holderBride: '池　世理',
       holderBrideFather: '池鍾善（新婦の父）',
       holderBrideMother: '李瑞珍（新婦の母）',
       copy: 'コピー',
@@ -1510,7 +1536,7 @@
       toastAccountCopied: '口座番号をコピーしました',
       toastLinkCopied: 'リンクをコピーしました',
       toastLinkFail: 'リンクのコピーに失敗しました',
-      kakaoShareTitle: '全弘基 ♥ 池世莉 結婚式',
+      kakaoShareTitle: '全　洪基 ♥ 池　世理 結婚式',
       kakaoShareDesc: '2027年1月10日（日）午後1時\nラルーチェウェディングホール ルアールホール',
     },
   };
@@ -1548,18 +1574,22 @@
     const kakaoShareBtn = document.getElementById('kakaoShareBtn');
     if (kakaoShareBtn) kakaoShareBtn.style.display = lang === 'ko' ? '' : 'none';
 
+    document.querySelectorAll('.sms-btn').forEach(btn => {
+      btn.style.display = lang === 'ko' ? '' : 'none';
+    });
+
     if (typeof renderGallery === 'function') renderGallery();
     if (typeof renderInfoPanel === 'function') renderInfoPanel();
   }
 
   // ── 여행지 목록 ──
   const GALLERY_PLACES = [
-    { id: 'jeju', name: { ko: '제주', en: 'Jeju', ja: '済州' }, sub: { ko: '자연 속에서의 우리', en: 'Where our journeys began', ja: '初めて一緒に訪れた島' } },
-    { id: 'tokyo', name: { ko: '도쿄', en: 'Tokyo', ja: '東京' }, sub: { ko: '세리의 두번째 고향', en: 'Nights walking the city together', ja: '街の夜を一緒に歩いた日' } },
-    { id: 'turkey', name: { ko: '터키', en: 'Türkiye', ja: 'トルコ' }, sub: { ko: '낯설고도 아름다운 순간들', en: 'Landscapes we flew far to see', ja: '遠く飛んで出会った景色' } },
-    { id: 'egypt', name: { ko: '이집트', en: 'Egypt', ja: 'エジプト' }, sub: { ko: '오래된 시간과 깊은 바다', en: 'Standing before ancient time', ja: '古い時間の前で' } },
+    { id: 'jeju', name: { ko: '제주', en: 'Jeju', ja: '済州' }, sub: { ko: '자연 속에서의 우리', en: 'Just the two of us, in nature', ja: '自然に包まれた、私たちだけの時間' } },
+    { id: 'tokyo', name: { ko: '도쿄', en: 'Tokyo', ja: '東京' }, sub: { ko: '세리의 두번째 고향', en: "Seri's second hometown", ja: 'セリの第二の故郷' } },
+    { id: 'turkey', name: { ko: '터키', en: 'Türkiye', ja: 'トルコ' }, sub: { ko: '낯설고도 아름다운 순간들', en: 'Unfamiliar, yet beautiful moments', ja: '見慣れない、けれど美しい瞬間たち' } },
+    { id: 'egypt', name: { ko: '이집트', en: 'Egypt', ja: 'エジプト' }, sub: { ko: '오래된 시간과 깊은 바다', en: 'Ancient time, deep sea', ja: '古い時間と深い海' } },
     { id: 'dubai', name: { ko: '두바이', en: 'Dubai', ja: 'ドバイ' }, sub: { ko: '사막 위의 또다른 하늘', en: 'Another sky above the desert', ja: '砂漠の上のもう一つの空' } },
-    { id: 'gongju', name: { ko: '공주', en: 'Gongju', ja: '公州' }, sub: { ko: '홍기의 로망, 함께 뛴 우리', en: 'A season spent close to home', ja: '近くで過ごした季節' } },
+    { id: 'gongju', name: { ko: '공주', en: 'Gongju', ja: '公州' }, sub: { ko: '홍기의 로망, 함께 뛴 우리', en: "Hong-gi's long-held dream — running side by side", ja: '洪基の憧れ、一緒に走った私たち' } },
     { id: 'laluce', name: { ko: '라루체', en: 'La Luce', ja: 'ラルーチェ' }, sub: { ko: '우리의 다음 여정, 결혼식', en: 'Our next journey — the wedding', ja: '次の旅、結婚式' } },
   ];
 
