@@ -111,7 +111,7 @@
   }
 
   .cover-heart {
-    font-size: 18px;
+    font-size: 26px;
     opacity: 0.85;
     margin: 0 8px;
   }
@@ -184,6 +184,7 @@
     font-size: 20px;
     color: var(--blush);
     padding: 0 20px;
+    margin-top: 32px;
     flex-shrink: 0;
   }
 
@@ -493,7 +494,7 @@
   .calendar-btns {
     display: flex;
     gap: 10px;
-    margin-top: 24px;
+    margin-top: 32px;
     justify-content: center;
     flex-wrap: wrap;
   }
@@ -601,6 +602,20 @@
     font-weight: 300;
     line-height: 1.9;
     color: var(--muted);
+  }
+
+  /* ── Photo Booth ── */
+  .photobooth-card {
+    background: var(--white);
+    border: 1px solid rgba(184, 147, 106, 0.2);
+    border-radius: 16px;
+    padding: 28px 20px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 2;
+    color: var(--text);
+    word-break: keep-all;
   }
 
   /* ── Account ── */
@@ -1229,6 +1244,44 @@
   </div>
 </section>
 
+<!-- Photo Booth -->
+<section id="photobooth" class="reveal">
+  <p class="section-label" data-i18n="sectionPhotobooth">PHOTO BOOTH</p>
+  <div class="photobooth-card">
+    <p data-i18n-html="photoboothHtml">
+      행복한 날을 기록할 수 있도록<br>
+      포토부스를 준비했습니다.<br>
+      소중한 사람들과 함께 사진을 찍어주세요.<br><br>
+      한 장은 방명록에,<br>
+      한 장은 추억으로 간직해주세요 ♥
+    </p>
+  </div>
+</section>
+
+<!-- Information -->
+<section id="information" class="reveal">
+  <p class="section-label" data-i18n="sectionInformation">INFORMATION</p>
+
+  <div class="info-tabs" role="tablist">
+    <button class="info-tab active" type="button" data-tab="flower" onclick="switchInfoTab(this, 'flower')" aria-selected="true">
+      <span class="info-tab-icon">💐</span>
+      <span data-i18n="infoTabFlower">화환</span>
+    </button>
+    <button class="info-tab" type="button" data-tab="parking" onclick="switchInfoTab(this, 'parking')" aria-selected="false">
+      <span class="info-tab-icon">🅿️</span>
+      <span data-i18n="infoTabParking">주차</span>
+    </button>
+    <button class="info-tab" type="button" data-tab="etc" onclick="switchInfoTab(this, 'etc')" aria-selected="false">
+      <span class="info-tab-icon">⋯</span>
+      <span data-i18n="infoTabEtc">기타</span>
+    </button>
+  </div>
+
+  <div class="info-panel">
+    <p class="info-panel-text" id="infoPanelText" data-i18n-html="infoFlowerHtml">예식장 규정에 따라 화환 반입이 불가합니다.<br>따뜻한 축하의 마음만 소중히 받겠습니다.</p>
+  </div>
+</section>
+
 <!-- Account -->
 <section id="account" class="reveal">
   <p class="section-label" data-i18n="sectionAccount">ACCOUNT</p>
@@ -1305,30 +1358,6 @@
   </div>
 </section>
 
-<!-- Information -->
-<section id="information" class="reveal">
-  <p class="section-label" data-i18n="sectionInformation">INFORMATION</p>
-
-  <div class="info-tabs" role="tablist">
-    <button class="info-tab active" type="button" data-tab="flower" onclick="switchInfoTab(this, 'flower')" aria-selected="true">
-      <span class="info-tab-icon">💐</span>
-      <span data-i18n="infoTabFlower">화환</span>
-    </button>
-    <button class="info-tab" type="button" data-tab="parking" onclick="switchInfoTab(this, 'parking')" aria-selected="false">
-      <span class="info-tab-icon">🅿️</span>
-      <span data-i18n="infoTabParking">주차</span>
-    </button>
-    <button class="info-tab" type="button" data-tab="etc" onclick="switchInfoTab(this, 'etc')" aria-selected="false">
-      <span class="info-tab-icon">⋯</span>
-      <span data-i18n="infoTabEtc">기타</span>
-    </button>
-  </div>
-
-  <div class="info-panel">
-    <p class="info-panel-text" id="infoPanelText" data-i18n-html="infoFlowerHtml">예식장 규정에 따라 화환 반입이 불가합니다.<br>따뜻한 축하의 마음만 소중히 받겠습니다.</p>
-  </div>
-</section>
-
 <!-- Share -->
 <section id="share" class="reveal">
   <p class="section-label" data-i18n="sectionShare">SHARE</p>
@@ -1377,6 +1406,7 @@
       sectionGallery: 'GALLERY',
       sectionSchedule: 'SCHEDULE',
       sectionLocation: 'LOCATION',
+      sectionPhotobooth: 'PHOTO BOOTH',
       sectionAccount: 'ACCOUNT',
       sectionInformation: 'INFORMATION',
       sectionShare: 'SHARE',
@@ -1410,6 +1440,7 @@
       transportBusDesc: '간선버스 105, 463 명동역 7번 출구 하차',
       transportCar: '🚗 자가용',
       transportCarDescHtml: '라루체웨딩홀 주차장 이용 가능 (2시간 무료)<br>내비게이션 \'라루체웨딩홀\' 검색',
+      photoboothHtml: '행복한 날을 기록할 수 있도록<br>포토부스를 준비했습니다.<br>소중한 사람들과 함께 사진을 찍어주세요.<br><br>한 장은 방명록에,<br>한 장은 추억으로 간직해주세요 ♥',
       accountIntroHtml: '마음만으로도 충분합니다.<br>참석이 어려우신 분들을 위해<br>계좌 정보를 안내드립니다.',
       accountGroomSide: '신랑측',
       accountBrideSide: '신부측',
@@ -1449,6 +1480,7 @@
       sectionGallery: 'GALLERY',
       sectionSchedule: 'SCHEDULE',
       sectionLocation: 'LOCATION',
+      sectionPhotobooth: 'PHOTO BOOTH',
       sectionAccount: 'ACCOUNT',
       sectionInformation: 'INFORMATION',
       sectionShare: 'SHARE',
@@ -1482,6 +1514,7 @@
       transportBusDesc: 'Bus 105, 463 · Get off at Myeongdong Stn. Exit 7',
       transportCar: '🚗 By car',
       transportCarDescHtml: 'Parking available (2 hours free)<br>Search \'La Luce Wedding Hall\' in navigation',
+      photoboothHtml: 'We\'ve prepared a photo booth<br>to capture this happy day.<br>Please take photos with your loved ones.<br><br>Leave one in our guestbook,<br>and keep one to treasure ♥',
       accountIntroHtml: 'Your presence is the greatest gift.<br>For those unable to attend,<br>we share our account details below.',
       accountGroomSide: "Groom's Side",
       accountBrideSide: "Bride's Side",
@@ -1521,6 +1554,7 @@
       sectionGallery: 'GALLERY',
       sectionSchedule: 'SCHEDULE',
       sectionLocation: 'LOCATION',
+      sectionPhotobooth: 'PHOTO BOOTH',
       sectionAccount: 'ACCOUNT',
       sectionInformation: 'INFORMATION',
       sectionShare: 'SHARE',
@@ -1554,6 +1588,7 @@
       transportBusDesc: '幹線バス105・463 明洞駅7番出口下車',
       transportCar: '🚗 お車',
       transportCarDescHtml: 'ラルーチェウェディングホール駐車場利用可（2時間無料）<br>ナビで「ラルーチェウェディングホール」を検索',
+      photoboothHtml: '幸せな一日を記録できるように<br>フォトブースをご用意しました。<br>大切な方々と一緒に写真を撮ってください。<br><br>一枚はゲストブックに、<br>一枚は思い出として大切にしてください。♥',
       accountIntroHtml: 'お気持ちだけで十分です。<br>ご出席が難しい方のために<br>口座情報をご案内いたします。',
       accountGroomSide: '新郎側',
       accountBrideSide: '新婦側',
@@ -1685,8 +1720,11 @@
   
     { place: 'turkey', src: 'https://lh3.googleusercontent.com/d/1EnkAh_URaX26AjgAoB0_SOcYcnS4YmKm?w=800&q=80'},
     { place: 'turkey', src: 'https://lh3.googleusercontent.com/d/1ozPEUXK1JyBiJcpluTienYk8sqIT9N8O?w=800&q=80'},
+    { place: 'turkey', src: 'https://lh3.googleusercontent.com/d/1R9jVGMTegy5GKXcO7LvkV8tItaSnXDgT?w=800&q=80'},
+    { place: 'turkey', src: 'https://lh3.googleusercontent.com/d/1iHIKLO7h4Xu4TPd8KLzM_hQHZNc7iVhg?w=800&q=80'},
     { place: 'turkey', src: 'https://lh3.googleusercontent.com/d/14I58IlpzQPGWVuYvWoPpTCq4ICgJuGsy?w=800&q=80'},
     { place: 'turkey', src: 'https://lh3.googleusercontent.com/d/1nUW_w0JrLLcdIu8kF77WnOu675o_q8lV?w=800&q=80'},
+    
     /*{ place: 'turkey', src: 'https://drive.google.com/uc?export=download&id=1OrVduRnrwLIDk6awIlOFypYEtEChUpYp', thumb: 'https://lh3.googleusercontent.com/d/1OrVduRnrwLIDk6awIlOFypYEtEChUpYp?w=800&q=80', type: 'video' },
     */
     { place: 'egypt', src: 'https://lh3.googleusercontent.com/d/1h8gOUisgwohRlmTxgkCbo7VbQ8OVwJb4?w=800&q=80'},
@@ -1701,10 +1739,12 @@
     { place: 'dubai', src: 'https://lh3.googleusercontent.com/d/1XRWJZQIDQ7nbwotTbdK3CtVpnPL3O7zB?w=800&q=80'},
     { place: 'dubai', src: 'https://lh3.googleusercontent.com/d/1qzXUS7qaEM3pYIE6NeALNCjslPHfaAhh?w=800&q=80'},
 
-    { place: 'gongju', src: 'https://lh3.googleusercontent.com/d/1RuOUOg2MgPr6_ZOuzkG2KuXdIOXjFqUJ?w=800&q=80'},
-    { place: 'gongju', src: 'https://lh3.googleusercontent.com/d/1_CZmvNZI4OHLFgqUG18-iELAErC34lsE?w=800&q=80'},
-    { place: 'gongju', src: 'https://lh3.googleusercontent.com/d/1hllW-4ESew9ZEt96Jm4RRo_mQjnbKNlX?w=800&q=80'},
-    { place: 'gongju', src: 'https://lh3.googleusercontent.com/d/1jSf2pS48318rIx75dBZH3G9C8xuBAK5p?w=800&q=80'},
+    { place: 'gongju', src: 'https://lh3.googleusercontent.com/d/1vXrPlVs-2SXSCi8ZmX6mY44ldzSlsfID?w=800&q=80'},
+    { place: 'gongju', src: 'https://lh3.googleusercontent.com/d/10oiJLeDWcF0gFl_QLa6I-ukV3ddo72N7?w=800&q=80'},
+    { place: 'gongju', src: 'https://lh3.googleusercontent.com/d/1RkePRv7khwd0kpTLXwnRxoemIK7Z8Fpz?w=800&q=80'},
+    { place: 'gongju', src: 'https://lh3.googleusercontent.com/d/1-Lb4CLYV7pAXCOis8OhJpbFD3o5o9rZR?w=800&q=80'},
+    { place: 'gongju', src: 'https://lh3.googleusercontent.com/d/1rlu6lXILXouzF0vk-KWfZFDfg8mlg8Kt?w=800&q=80'},
+    { place: 'gongju', src: 'https://lh3.googleusercontent.com/d/1iVjSRBdOgk6kf9abKManT-Q0ZOX3TIMQ?w=800&q=80'},
 
     { place: 'laluce', src: 'https://lh3.googleusercontent.com/d/14n5_sPamT8KNRAuv-URVnQWXXSeuG2DA?w=800&q=80'},
   ];
