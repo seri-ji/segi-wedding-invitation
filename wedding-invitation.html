@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
 <title>전홍기 ♥ 지세리 결혼합니다</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600&family=Noto+Sans+KR:wght@300;400;500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600&family=Noto+Sans+KR:wght@300;400;500&family=Klee+One:wght@400;600&family=Noto+Serif+JP:wght@300;400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
 
   @font-face {
     font-family: 'RIDIBatang-subset';
@@ -32,13 +32,24 @@
   html { scroll-behavior: smooth; }
 
   body {
-    background: var(--cream);
+    background-color: var(--cream);
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27300%27%20height%3D%27300%27%3E%3Cfilter%20id%3D%27paperNoise%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%270.85%27%20numOctaves%3D%274%27%20stitchTiles%3D%27stitch%27%20result%3D%27noise%27%2F%3E%3CfeColorMatrix%20in%3D%27noise%27%20type%3D%27matrix%27%20values%3D%270%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200.06%200%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20filter%3D%27url%28%23paperNoise%29%27%2F%3E%3C%2Fsvg%3E");
+    background-repeat: repeat;
+    background-size: 300px 300px;
     color: var(--text);
     font-family: 'RIDIBatang-subset', 'Noto Serif KR', serif;
     max-width: 480px;
     margin: 0 auto;
     position: relative;
     overflow-x: hidden;
+  }
+
+  html[lang="ja"] body {
+    font-family: 'Klee One', 'Noto Serif JP';
+  }
+
+  html[lang="en"] body {
+    font-family: 'Libre Baskerville', serif;
   }
 
   rt {
@@ -447,6 +458,23 @@
     margin-bottom: 20px;
   }
 
+  .countdown-label {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .countdown-dday {
+    font-size: 40px;
+    font-weight: 600;
+    color: var(--deep);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    margin-bottom: 20px;
+  }
+
   .schedule-divider {
     width: 32px;
     height: 1px;
@@ -506,9 +534,9 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 110%;
-    height: 110%;
-    transform: translate(calc(-50% - 3%), -50%);
+    width: 200%;
+    height: 200%;
+    transform: translate(calc(-50% + 5.5%), calc(-50% + 15.3%));
     border: 0;
     pointer-events: none;
   }
@@ -798,6 +826,14 @@
     background: var(--deep);
     color: rgba(250,240,232,0.6);
     font-family: 'RIDIBatang-subset', 'Noto Serif KR', serif;
+  }
+
+  html[lang="ja"] .footer {
+    font-family: 'Klee One', 'Noto Serif JP';
+  }
+
+  html[lang="en"] .footer {
+    font-family: 'Libre Baskerville', serif;
   }
 
   .footer-names {
@@ -1143,8 +1179,8 @@
 <section id="schedule" class="reveal">
   <p class="section-label" data-i18n="sectionSchedule">SCHEDULE</p>
   <div class="schedule-card">
-    <p class="schedule-month" data-i18n="scheduleMonth">JAN</p>
-    <p class="schedule-day">10</p>
+    <p class="countdown-label" data-i18n="countdownLabel">설레는 마음으로 기다리고 있어요</p>
+    <p class="countdown-dday" id="countdownDday">D-102일</p>
     <div class="schedule-divider"></div>
     <p class="schedule-detail" data-i18n-html="scheduleDetailHtml">
       2027년 01월 10일 일요일 오후 1시<br>
@@ -1174,9 +1210,9 @@
     <span data-i18n-html="addressHtml">서울특별시 중구 퇴계로18길 46<br>라루체웨딩홀 4층 루아르홀</span>
   </div>
   <div class="map-btns">
-    <a href="https://map.kakao.com/?itemId=8586977&urlX=496566&urlY=1127664" target="_blank" rel="noopener" class="btn-map" data-i18n="mapKakao">카카오맵</a>
     <a href="https://naver.me/IgJGrKmE" class="btn-map" data-i18n="mapNaver">네이버지도</a>
-    <a href="#" class="btn-map" data-i18n="mapTmap">T맵</a>
+    <a href="https://map.kakao.com/?itemId=8586977&urlX=496566&urlY=1127664" target="_blank" rel="noopener" class="btn-map" data-i18n="mapKakao">카카오맵</a>
+    <a href="https://map.tmap.co.kr/search/%EB%9D%BC%EB%A3%A8%EC%B2%B4%EC%9B%A8%EB%94%A9%ED%99%80" target="_blank" rel="noopener" class="btn-map" data-i18n="mapTmap">T맵</a>
   </div>
 
   <div class="transport-item">
@@ -1358,6 +1394,7 @@
       call: '📞 전화',
       sms: '💬 문자',
       scheduleMonth: 'JAN',
+      countdownLabel: '설레는 마음으로 기다리고 있어요',
       scheduleDetailHtml: '2027년 01월 10일 일요일 오후 1시<br>라루체웨딩홀 루아르홀',
       btnGoogleCal: '📅 구글 캘린더',
       btnAppleCal: '🍎 아이폰 캘린더',
@@ -1429,6 +1466,7 @@
       call: '📞 Call',
       sms: '💬 Message',
       scheduleMonth: 'JAN',
+      countdownLabel: 'Counting Down to Our Special Day',
       scheduleDetailHtml: 'Sunday, January 10, 2027 · 1:00 PM<br>La Luce Wedding Hall · Luar Hall',
       btnGoogleCal: '📅 Google Calendar',
       btnAppleCal: '🍎 Apple Calendar',
@@ -1500,6 +1538,7 @@
       call: '📞 電話',
       sms: '💬 メッセージ',
       scheduleMonth: '1月',
+      countdownLabel: 'ワクワクしながらお待ちしております',
       scheduleDetailHtml: '2027年1月10日（日）午後1時<br>ラルーチェウェディングホール ルアールホール',
       btnGoogleCal: '📅 Googleカレンダー',
       btnAppleCal: '🍎 iPhoneカレンダー',
@@ -1580,6 +1619,24 @@
 
     if (typeof renderGallery === 'function') renderGallery();
     if (typeof renderInfoPanel === 'function') renderInfoPanel();
+    updateDday();
+  }
+
+  function updateDday() {
+    const el = document.getElementById('countdownDday');
+    if (!el) return;
+    const now = new Date();
+    const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const startOfEvent = new Date(2027, 0, 10);
+    const diffDays = Math.round((startOfEvent - startOfToday) / (1000 * 60 * 60 * 24));
+    const suffix = currentLang === 'ko' ? '일' : '';
+    if (diffDays > 0) {
+      el.textContent = `D-${diffDays}${suffix}`;
+    } else if (diffDays === 0) {
+      el.textContent = 'D-DAY';
+    } else {
+      el.textContent = `D+${Math.abs(diffDays)}${suffix}`;
+    }
   }
 
   // ── 여행지 목록 ──
@@ -1631,12 +1688,15 @@
     { place: 'turkey', src: 'https://lh3.googleusercontent.com/d/1ozPEUXK1JyBiJcpluTienYk8sqIT9N8O?w=800&q=80'},
     { place: 'turkey', src: 'https://lh3.googleusercontent.com/d/14I58IlpzQPGWVuYvWoPpTCq4ICgJuGsy?w=800&q=80'},
     { place: 'turkey', src: 'https://lh3.googleusercontent.com/d/1nUW_w0JrLLcdIu8kF77WnOu675o_q8lV?w=800&q=80'},
-    { place: 'turkey', src: 'https://drive.google.com/uc?export=download&id=1OrVduRnrwLIDk6awIlOFypYEtEChUpYp', thumb: 'https://lh3.googleusercontent.com/d/1OrVduRnrwLIDk6awIlOFypYEtEChUpYp?w=800&q=80', type: 'video' },
-
+    /*{ place: 'turkey', src: 'https://drive.google.com/uc?export=download&id=1OrVduRnrwLIDk6awIlOFypYEtEChUpYp', thumb: 'https://lh3.googleusercontent.com/d/1OrVduRnrwLIDk6awIlOFypYEtEChUpYp?w=800&q=80', type: 'video' },
+    */
     { place: 'egypt', src: 'https://lh3.googleusercontent.com/d/1h8gOUisgwohRlmTxgkCbo7VbQ8OVwJb4?w=800&q=80'},
     { place: 'egypt', src: 'https://lh3.googleusercontent.com/d/11uxrTYR4gKoMaruuj0o_OvmimvUVfcKq?w=800&q=80'},
     { place: 'egypt', src: 'https://lh3.googleusercontent.com/d/18mXaf3JWJBdAfe1GPfDzhIXEgWeH0FKn?w=800&q=80'},
+    { place: 'egypt', src: 'https://lh3.googleusercontent.com/d/1T5VHe4gcOVjsrEwj2dDePuKGcUtSHKxW?w=800&q=80'},
+    { place: 'egypt', src: 'https://lh3.googleusercontent.com/d/1g-CqlfDpgWsDvnpNJq3fYPhJAbpFL9t6?w=800&q=80'},
     { place: 'egypt', src: 'https://lh3.googleusercontent.com/d/1MMUHz-pxKIX0zPPTyJ6LmMBwNn5cKML_?w=800&q=80'},
+
 
     { place: 'dubai', src: 'https://lh3.googleusercontent.com/d/11WbRK550wyFF7rxCyTz2rDns6hH9vwIb?w=800&q=80'},
     { place: 'dubai', src: 'https://lh3.googleusercontent.com/d/1XRWJZQIDQ7nbwotTbdK3CtVpnPL3O7zB?w=800&q=80'},
@@ -1647,7 +1707,7 @@
     { place: 'gongju', src: 'https://lh3.googleusercontent.com/d/1hllW-4ESew9ZEt96Jm4RRo_mQjnbKNlX?w=800&q=80'},
     { place: 'gongju', src: 'https://lh3.googleusercontent.com/d/1jSf2pS48318rIx75dBZH3G9C8xuBAK5p?w=800&q=80'},
 
-    { place: 'laluce', src: 'https://lh3.googleusercontent.com/d/1Daj9wrFQQIS8VVmTjlX76xfudfQUjoFh?w=800&q=80'},
+    { place: 'laluce', src: 'https://lh3.googleusercontent.com/d/14n5_sPamT8KNRAuv-URVnQWXXSeuG2DA?w=800&q=80'},
   ];
 /*
 https://drive.google.com/file/d/1Daj9wrFQQIS8VVmTjlX76xfudfQUjoFh/view?usp=sharing
@@ -1683,7 +1743,8 @@ https://drive.google.com/file/d/1Daj9wrFQQIS8VVmTjlX76xfudfQUjoFh/view?usp=shari
       const count = t('journeyPhotos').replace('{n}', String(photos.length));
       const items = photos.map((img, i) => {
         const src = coverSrc(img);
-        return `<div class="gallery-item" onclick="event.stopPropagation(); openLightbox('${place.id}', ${i})">
+        const clickAttr = place.id === 'laluce' ? '' : ` onclick="event.stopPropagation(); openLightbox('${place.id}', ${i})"`;
+        return `<div class="gallery-item"${clickAttr}>
           <img src="${src}" alt="${img.alt || t('galleryAlt') + ' ' + (i + 1)}" loading="${pi === 0 && i === 0 ? 'eager' : 'lazy'}">
         </div>`;
       }).join('');
