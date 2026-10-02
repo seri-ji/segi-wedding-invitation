@@ -574,52 +574,26 @@
   }
 
   .map-btns {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
     gap: 8px;
+    flex-wrap: wrap;
     margin-bottom: 28px;
   }
 
   .btn-map {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    padding: 10px 3px;
-    border-radius: 10px;
+    padding: 9px 16px;
+    border-radius: 20px;
     font-family: 'Noto Sans KR', sans-serif;
-    font-size: 11px;
+    font-size: 12px;
     text-decoration: none;
-    border: 1px solid rgba(184, 147, 106, 0.25);
+    border: 1px solid rgba(184, 147, 106, 0.35);
     color: var(--text);
-    background: var(--white);
+    background: transparent;
     cursor: pointer;
-    transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
-    box-shadow: 2px 3px 6px rgba(61, 43, 31, 0.15);
-    white-space: nowrap;
-    overflow: hidden;
-  }
-
-  .btn-map span {
-    overflow: hidden;
-    text-overflow: ellipsis;
+    transition: background 0.2s;
   }
 
   .btn-map:hover { background: var(--light); }
-
-  .btn-map:active {
-    box-shadow: 1px 1px 3px rgba(61, 43, 31, 0.15);
-    transform: translate(1px, 2px);
-  }
-
-  .map-btn-icon {
-    width: 18px;
-    height: 18px;
-    border-radius: 5px;
-    object-fit: cover;
-    flex-shrink: 0;
-    display: block;
-  }
 
   .transport-item {
     margin-bottom: 20px;
@@ -1261,9 +1235,9 @@
     <span data-i18n-html="addressHtml">서울특별시 중구 퇴계로18길 46<br>라루체웨딩홀 4층 루아르홀</span>
   </div>
   <div class="map-btns">
-    <a href="https://naver.me/IgJGrKmE" class="btn-map"><img class="map-btn-icon" src="https://lh3.googleusercontent.com/d/11flPRI8I-m79MdMe8b4edUmEQtGLKzaR?w=120&q=80" alt=""><span data-i18n="mapNaver">네이버지도</span></a>
-    <a href="https://www.google.com/maps/search/%EB%9D%BC%EB%A3%A8%EC%B2%B4%EC%9B%A8%EB%94%A9%ED%99%80+%EC%84%9C%EC%9A%B8+%EC%A4%91%EA%B5%AC+%ED%87%B4%EA%B3%84%EB%A1%9C18%EA%B8%B8+46" target="_blank" rel="noopener" class="btn-map"><img class="map-btn-icon" src="https://lh3.googleusercontent.com/d/1E0cLnO5Fymtq3O-xIt15ytPncB3AjSHP?w=120&q=80" alt=""><span data-i18n="mapGoogle">구글맵</span></a>
-    <a href="https://map.tmap.co.kr/search/%EB%9D%BC%EB%A3%A8%EC%B2%B4%EC%9B%A8%EB%94%A9%ED%99%80" target="_blank" rel="noopener" class="btn-map"><img class="map-btn-icon" src="https://lh3.googleusercontent.com/d/1cc6L14xwMbqQnuDKrLPCgikDPq22a4WP?w=120&q=80" alt=""><span data-i18n="mapTmap">T맵</span></a>
+    <a href="https://naver.me/IgJGrKmE" class="btn-map" data-i18n="mapNaver">네이버지도</a>
+    <a href="https://map.kakao.com/?itemId=8586977&urlX=496566&urlY=1127664" target="_blank" rel="noopener" class="btn-map" data-i18n="mapKakao">카카오맵</a>
+    <a href="https://map.tmap.co.kr/search/%EB%9D%BC%EB%A3%A8%EC%B2%B4%EC%9B%A8%EB%94%A9%ED%99%80" target="_blank" rel="noopener" class="btn-map" data-i18n="mapTmap">T맵</a>
   </div>
 
   <div class="transport-item">
@@ -1421,26 +1395,9 @@
 <!-- Toast -->
 <div class="toast" id="toast"></div>
 
-<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.8.3/kakao.min.js"></script>
 <script>
-  // ── 가벼운 우클릭/개발자도구 단축키 차단 ──
-  // 주의: 이건 장난스러운 복사 시도를 막는 정도의 눈가림일 뿐, 작정하고 보려는 사람은
-  // 브라우저 메뉴(페이지 소스 보기)나 curl, 혹은 깃허브 저장소 자체에서 얼마든지
-  // HTML을 볼 수 있다. 실제 보안 수단이 아니라는 점을 유의할 것.
-  document.addEventListener('contextmenu', e => e.preventDefault());
-  document.addEventListener('keydown', e => {
-    const key = (e.key || '').toLowerCase();
-    if (key === 'f12') { e.preventDefault(); return; }
-    if ((e.ctrlKey || e.metaKey) && e.shiftKey && ['i', 'j', 'c'].includes(key)) { e.preventDefault(); return; }
-    if ((e.ctrlKey || e.metaKey) && key === 'u') { e.preventDefault(); return; }
-  });
-
   // ── 공유 설정 ──
   const SHARE_PAGE_URL = 'https://seri-ji.github.io/segi-wedding-invitation/index.html';
-  const KAKAO_SHARE_IMAGE = 'https://lh3.googleusercontent.com/d/14n5_sPamT8KNRAuv-URVnQWXXSeuG2DA?w=800&q=80';
-  if (window.Kakao && !Kakao.isInitialized()) {
-    Kakao.init('b791e3f7d4019ea6dfae02fd39e15132');
-  }
 
   // ── 다국어 ──
   const I18N = {
@@ -1484,7 +1441,7 @@
       mapAria: '네이버지도에서 라루체웨딩홀 보기',
       venueName: '라루체웨딩홀 루아르홀',
       addressHtml: '서울특별시 중구 퇴계로18길 46<br>라루체웨딩홀 4층 루아르홀',
-      mapGoogle: '구글맵',
+      mapKakao: '카카오맵',
       mapNaver: '네이버지도',
       mapTmap: 'T맵',
       transportSubway: '🚇 지하철',
@@ -1507,7 +1464,6 @@
       copied: '✓ 복사됨',
       shareIntro: '소중한 분들께 청첩장을 전해주세요',
       shareKakao: '카카오톡으로 공유하기',
-      kakaoShareButton: '청첩장 보러가기',
       shareLink: '🔗 링크 복사하기',
       footerDate: '2027년 01월 10일 일요일 오후 1시',
       galleryAlt: '웨딩 사진',
@@ -1559,7 +1515,7 @@
       mapAria: 'View La Luce Wedding Hall on Naver Map',
       venueName: 'La Luce Wedding Hall · Luar Hall',
       addressHtml: '46 Toegye-ro 18-gil, Jung-gu, Seoul<br>4F Luar Hall, La Luce Wedding Hall',
-      mapGoogle: 'Google Maps',
+      mapKakao: 'Kakao Map',
       mapNaver: 'Naver Map',
       mapTmap: 'T Map',
       transportSubway: '🚇 Subway',
@@ -1582,7 +1538,6 @@
       copied: '✓ Copied',
       shareIntro: 'Share our wedding invitation with loved ones',
       shareKakao: 'Share via KakaoTalk',
-      kakaoShareButton: 'View Invitation',
       shareLink: '🔗 Copy link',
       footerDate: 'Sunday, January 10, 2027 · 1:00 PM',
       galleryAlt: 'Wedding photo',
@@ -1634,16 +1589,16 @@
       mapAria: 'NAVERマップでラルーチェウェディングホールを見る',
       venueName: 'ラルーチェウェディングホール ルアールホール',
       addressHtml: 'ソウル特別市中区退渓路18ギル46<br>ラルーチェウェディングホール4階 ルアールホール',
-      mapGoogle: 'Google Maps',
-      mapNaver: 'Naver Map',
-      mapTmap: 'T Map',
+      mapKakao: 'カカオマップ',
+      mapNaver: 'NAVERマップ',
+      mapTmap: 'T map',
       transportSubway: '🚇 地下鉄',
       transportSubwayDesc: '4号线 明洞駅4番出口より徒歩5分',
       transportBus: '🚌 バス',
       transportBusDesc: '幹線バス105・463 明洞駅7番出口下車',
       transportCar: '🚗 お車',
       transportCarDescHtml: 'ラルーチェウェディングホール駐車場利用可（2時間無料）<br>ナビで「ラルーチェウェディングホール」を検索',
-      photoboothHtml: '幸せな一日を記録できるように<br>フォトブースをご用意しました。<br>大切な方々と一緒に写真を撮ってください。<br><br>一枚はゲストブックに、<br>一枚は思い出として大切にしてください。♥',
+      photoboothHtml: '幸せな一日を記録できるように<br>フォトブースをご用意しました。<br>大切な方々と一緒に写真を撮ってください。<br><br>一枚はゲストブックに、<br>一枚は思い出としてお持ちください。♥',
       accountIntroHtml: 'お気持ちだけで十分です。<br>ご出席が難しい方のために<br>口座情報をご案内いたします。',
       accountGroomSide: '新郎側',
       accountBrideSide: '新婦側',
@@ -1657,7 +1612,6 @@
       copied: '✓ コピー済',
       shareIntro: '大切な方へ招待状をお伝えください',
       shareKakao: 'カカオトークで共有',
-      kakaoShareButton: '招待状を見る',
       shareLink: '🔗 リンクをコピー',
       footerDate: '2027年1月10日（日）午後1時',
       galleryAlt: 'ウェディング写真',
@@ -1749,10 +1703,10 @@
     { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/1Gk7C-Y5wBlTMh0l_ZCTIPPKbIKAFYiEw?w=800&q=80'},
     { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/12CD7PagT2AvEmeE6bB8bDEPdhjW12dYU?w=800&q=80'},
     { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/1Vogsp-jcXU2zX1e_QMq-bjXz0gxR4qVw?w=800&q=80'},
-    { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/120Tth1D9qEy3_mwuWchjWaPLxkThRMZB?w=800&q=80'},
+    { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/1wxQ-7h9bGZx-lADpj7-1sEhfpVu3X3C4?w=800&q=80'},
     { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/1sW4Ui7BRkaTgM4-DabNlctDrqPh9rB5I?w=800&q=80'},
     { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/1iAti4CS0KWbIEgCds7PgCqT8oCx7ssCq?w=800&q=80'},
-    { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/1R6nUGdCAYs5idnZ1ATg9p0OI6oPXypDc?w=800&q=80'},
+    { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/1DQ1HDrtwPVBkxoAcJj2WgfeAA3nGt6OI?w=800&q=80'},
     { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/1_4oA4cnRdYCrqDvwIYeCQNhpejtq9SUI?w=800&q=80'},
     { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/1nE9wKbJAe8zsG-mmj8_F-uWIH1fAbi_c?w=800&q=80'},
     { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/1szCOgQ3H3LlGN6J8kO55oHzFCEjN6x5p?w=800&q=80'},
@@ -1761,9 +1715,10 @@
     { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/1au7D-LUKaB1mcQ0CoKKku7X6vKL3uLgf?w=800&q=80'},
     { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/1TG8ElID5Shsv173gM2TjBoibiPlhjayX?w=800&q=80'},
     { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/1RdEuF4hodnP6UmYsBZ7vGy15nH1IflUq?w=800&q=80'},
-    { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/1X00T--levPsvnkLY5VqApNpxGa55Hin9?w=800&q=80'},
+    { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/1COBw8-nNhs7sDLsM1tP9UKAe6zC-uD1G?w=800&q=80'},
     { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/1E0VTeS3UT6i6Um7z8ZTG3XxWWOhroEL-?w=800&q=80'},
     { place: 'jeju', src: 'https://lh3.googleusercontent.com/d/1Q9RQp5qDszrEtKbOnuyzZEHdatG6WjY2?w=800&q=80'},
+    
     { place: 'tokyo', src: 'https://lh3.googleusercontent.com/d/13Vb_PN0B0wMRMBAXb2433D6j4_uxNpsq?w=800&q=80'},
     { place: 'tokyo', src: 'https://lh3.googleusercontent.com/d/1vZyi7lNZyvYD2NgAW_fHbLALSFZ9WYXb?w=800&q=80'},
     { place: 'tokyo', src: 'https://lh3.googleusercontent.com/d/1urBJ0y3v_zchFPeChUxYaQpNdDQFCsxE?w=800&q=80'},
@@ -1771,16 +1726,16 @@
     { place: 'tokyo', src: 'https://lh3.googleusercontent.com/d/1WxkLAadT1HuCkAxY3zjpnt7q5UnTNtIx?w=800&q=80'},
     { place: 'tokyo', src: 'https://lh3.googleusercontent.com/d/1wWrrHkXx_-HqUx5dL_KaaU6NXglk2_AF?w=800&q=80'},
     { place: 'tokyo', src: 'https://lh3.googleusercontent.com/d/1kJ8DWImhf5qnAtO6XeHNfnr_ZX_HBzcl?w=800&q=80'},
-    { place: 'tokyo', src: 'https://lh3.googleusercontent.com/d/1dMA1ORTE30N8DTJ5v6NMx46Q4bMeAxdK?w=800&q=80'},
+    { place: 'tokyo', src: 'https://lh3.googleusercontent.com/d/1QMFCQ-wAWbgiwFiG088HF5Lc7du8VK7B?w=800&q=80'},
     { place: 'tokyo', src: 'https://lh3.googleusercontent.com/d/1vsuQ8Zw0tPebuo5bz0_BdoxpdtX4LDdy?w=800&q=80'},
   
-    { place: 'turkey', src: 'https://lh3.googleusercontent.com/d/1EnkAh_URaX26AjgAoB0_SOcYcnS4YmKm?w=800&q=80'},
-    { place: 'turkey', src: 'https://lh3.googleusercontent.com/d/1ozPEUXK1JyBiJcpluTienYk8sqIT9N8O?w=800&q=80'},
+    { place: 'turkey', src: 'https://lh3.googleusercontent.com/d/19rA_MmnRtuETiPSbZYG6JoO13cOFMwxd?w=800&q=80'},
+    { place: 'turkey', src: 'https://lh3.googleusercontent.com/d/1bF60TsB8q_hcYuktG4b5Z9qbF8juysLM?w=800&q=80'},
     { place: 'turkey', src: 'https://lh3.googleusercontent.com/d/1R9jVGMTegy5GKXcO7LvkV8tItaSnXDgT?w=800&q=80', fit: 'cover'},
     { place: 'turkey', src: 'https://lh3.googleusercontent.com/d/1iHIKLO7h4Xu4TPd8KLzM_hQHZNc7iVhg?w=800&q=80', fit: 'cover'},
-    { place: 'turkey', src: 'https://lh3.googleusercontent.com/d/14I58IlpzQPGWVuYvWoPpTCq4ICgJuGsy?w=800&q=80'},
+    { place: 'turkey', src: 'https://lh3.googleusercontent.com/d/1g3d7Wz2pE-tlqD9KA5Xd_U-yZ3R-1vPM?w=800&q=80'},
     { place: 'turkey', src: 'https://lh3.googleusercontent.com/d/1nUW_w0JrLLcdIu8kF77WnOu675o_q8lV?w=800&q=80'},
-    
+
     /*{ place: 'turkey', src: 'https://drive.google.com/uc?export=download&id=1OrVduRnrwLIDk6awIlOFypYEtEChUpYp', thumb: 'https://lh3.googleusercontent.com/d/1OrVduRnrwLIDk6awIlOFypYEtEChUpYp?w=800&q=80', type: 'video' },
     */
     { place: 'egypt', src: 'https://lh3.googleusercontent.com/d/1h8gOUisgwohRlmTxgkCbo7VbQ8OVwJb4?w=800&q=80'},
@@ -1788,12 +1743,11 @@
     { place: 'egypt', src: 'https://lh3.googleusercontent.com/d/18mXaf3JWJBdAfe1GPfDzhIXEgWeH0FKn?w=800&q=80'},
     { place: 'egypt', src: 'https://lh3.googleusercontent.com/d/1T5VHe4gcOVjsrEwj2dDePuKGcUtSHKxW?w=800&q=80'},
     { place: 'egypt', src: 'https://lh3.googleusercontent.com/d/1g-CqlfDpgWsDvnpNJq3fYPhJAbpFL9t6?w=800&q=80'},
-    { place: 'egypt', src: 'https://lh3.googleusercontent.com/d/1MMUHz-pxKIX0zPPTyJ6LmMBwNn5cKML_?w=800&q=80'},
-
+    { place: 'egypt', src: 'https://lh3.googleusercontent.com/d/1u5g6lqrnGuvRQhO55be-nrEKpsh6LyZj?w=800&q=80'},
 
     { place: 'dubai', src: 'https://lh3.googleusercontent.com/d/11WbRK550wyFF7rxCyTz2rDns6hH9vwIb?w=800&q=80'},
     { place: 'dubai', src: 'https://lh3.googleusercontent.com/d/1XRWJZQIDQ7nbwotTbdK3CtVpnPL3O7zB?w=800&q=80'},
-    { place: 'dubai', src: 'https://lh3.googleusercontent.com/d/1qzXUS7qaEM3pYIE6NeALNCjslPHfaAhh?w=800&q=80'},
+    { place: 'dubai', src: 'https://lh3.googleusercontent.com/d/1VR3V156RrcRU8Rys-Gi5wYcZZP4NGmQU?w=800&q=80'},
 
     { place: 'gongju', src: 'https://lh3.googleusercontent.com/d/1vXrPlVs-2SXSCi8ZmX6mY44ldzSlsfID?w=800&q=80'},
     { place: 'gongju', src: 'https://lh3.googleusercontent.com/d/10oiJLeDWcF0gFl_QLa6I-ukV3ddo72N7?w=800&q=80'},
@@ -1833,17 +1787,6 @@ https://drive.google.com/file/d/1Daj9wrFQQIS8VVmTjlX76xfudfQUjoFh/view?usp=shari
       if (stop.dataset.place === placeId) stop.classList.toggle('open');
       else stop.classList.remove('open');
     });
-  }
-
-  // 라이트박스를 닫을 때, 보고 있던 세션의 타임라인 카드를 열어서 보여준다.
-  function openJourneyStop(placeId) {
-    let target = null;
-    document.querySelectorAll('.journey-stop').forEach(stop => {
-      const isTarget = stop.dataset.place === placeId;
-      stop.classList.toggle('open', isTarget);
-      if (isTarget) target = stop;
-    });
-    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
   function renderGallery() {
@@ -2003,7 +1946,6 @@ https://drive.google.com/file/d/1Daj9wrFQQIS8VVmTjlX76xfudfQUjoFh/view?usp=shari
     lightboxVideo.removeAttribute('src');
     lightboxVideo.load();
     lightboxVideo.style.display = 'none';
-    if (lightboxPlaceId) openJourneyStop(lightboxPlaceId);
   }
 
   function nextLightboxImage() {
@@ -2013,11 +1955,7 @@ https://drive.google.com/file/d/1Daj9wrFQQIS8VVmTjlX76xfudfQUjoFh/view?usp=shari
       return;
     }
     const curPos = JOURNEY_PLACE_IDS.indexOf(lightboxPlaceId);
-    if (curPos === JOURNEY_PLACE_IDS.length - 1) {
-      closeLightbox();
-      return;
-    }
-    if (curPos === -1) return;
+    if (curPos === -1 || curPos === JOURNEY_PLACE_IDS.length - 1) return;
     lightboxPlaceId = JOURNEY_PLACE_IDS[curPos + 1];
     lightboxItems = imagesForPlace(lightboxPlaceId);
     lightboxIndex = 0;
@@ -2099,28 +2037,7 @@ https://drive.google.com/file/d/1Daj9wrFQQIS8VVmTjlX76xfudfQUjoFh/view?usp=shari
 
   // Share
   async function shareKakao() {
-    // 카카오 SDK가 초기화되어 있으면 카카오톡 친구 선택 화면을 직접 띄웁니다.
-    if (window.Kakao && Kakao.isInitialized()) {
-      try {
-        Kakao.Share.sendDefault({
-          objectType: 'feed',
-          content: {
-            title: t('kakaoShareTitle'),
-            description: t('kakaoShareDesc'),
-            imageUrl: KAKAO_SHARE_IMAGE,
-            link: { mobileWebUrl: SHARE_PAGE_URL, webUrl: SHARE_PAGE_URL },
-          },
-          buttons: [
-            { title: t('kakaoShareButton'), link: { mobileWebUrl: SHARE_PAGE_URL, webUrl: SHARE_PAGE_URL } },
-          ],
-        });
-        return;
-      } catch (err) {
-        // 카카오 공유 실패 시 아래 기본 공유 시트로 대체합니다.
-      }
-    }
-
-    // 카카오 SDK를 쓸 수 없을 때는 기기의 기본 공유 시트(카카오톡 포함)를 사용합니다.
+    // 카카오 개발자 키 없이도 동작하도록, 기기의 기본 공유 시트(카카오톡 포함)를 사용합니다.
     if (navigator.share) {
       try {
         await navigator.share({
