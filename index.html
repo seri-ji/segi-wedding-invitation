@@ -224,6 +224,7 @@
     border-radius: 12px;
     padding: 20px 16px;
     text-align: center;
+    min-width: 0;
   }
 
   .contact-role {
@@ -250,8 +251,10 @@
   .btn-contact {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 5px;
-    padding: 7px 14px;
+    flex: 1;
+    padding: 7px 10px;
     border-radius: 20px;
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 12px;
@@ -260,6 +263,7 @@
     border: 1px solid rgba(184, 147, 106, 0.35);
     color: var(--text);
     background: transparent;
+    white-space: nowrap;
   }
 
   .btn-contact:hover { background: var(--light); }
@@ -523,7 +527,12 @@
   }
 
   .btn-cal {
-    padding: 9px 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    min-width: 0;
+    padding: 9px 10px;
     border-radius: 20px;
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 12px;
@@ -532,6 +541,7 @@
     color: var(--text);
     background: transparent;
     cursor: pointer;
+    white-space: nowrap;
     transition: background 0.2s;
   }
 
