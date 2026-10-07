@@ -1072,7 +1072,7 @@
 
   .lightbox img {
     max-width: 100vw;
-    max-height: 90vh;
+    max-height: 100vh;
     object-fit: contain;
     transition: opacity 0.25s ease, transform 0.25s ease;
     cursor: pointer;
@@ -1989,17 +1989,10 @@ https://drive.google.com/file/d/1Daj9wrFQQIS8VVmTjlX76xfudfQUjoFh/view?usp=shari
       lightboxImg.style.display = '';
       lightboxImg.src = data.src;
       lightboxImg.alt = data.alt;
-      if (data.fit === 'cover') {
-        // 가로폭만 화면에 꽉 채우고, 높이는 원본 비율대로 자동으로 맞춥니다.
-        // (이전엔 높이까지 90vh로 강제해서 object-fit:cover가 사진을 과하게 잘라냈음)
-        lightboxImg.style.width = '100vw';
-        lightboxImg.style.height = 'auto';
-        lightboxImg.style.objectFit = 'contain';
-      } else {
-        lightboxImg.style.width = '';
-        lightboxImg.style.height = '';
-        lightboxImg.style.objectFit = 'contain';
-      }
+      // 가로든 세로든 화면에 꽉 차는 쪽에 맞춰 원본 비율대로 보여줍니다.
+      lightboxImg.style.width = '';
+      lightboxImg.style.height = '';
+      lightboxImg.style.objectFit = 'contain';
       lightboxImg.classList.remove('slide-next', 'slide-prev');
       if (direction === 1) lightboxImg.classList.add('slide-next');
       if (direction === -1) lightboxImg.classList.add('slide-prev');
