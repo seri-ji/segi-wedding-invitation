@@ -664,6 +664,10 @@
     color: var(--muted);
   }
 
+  html:not([lang="ko"]) .ko-only {
+    display: none;
+  }
+
   /* ── Photo Booth ── */
   .photobooth-card {
     background: var(--white);
@@ -1297,6 +1301,7 @@
   <div class="transport-item">
     <p class="transport-label" data-i18n="transportBus">🚌 버스</p>
     <p class="transport-desc" data-i18n="transportBusDesc">간선버스 105, 463 명동역 7번 출구 하차</p>
+    <p class="transport-desc ko-only">대절버스<br>순천 : 순천 7시 출발<br>안산 : 안산역 11시 출발</p>
   </div>
   <div class="transport-item">
     <p class="transport-label" data-i18n="transportCar">🚗 자가용</p>
