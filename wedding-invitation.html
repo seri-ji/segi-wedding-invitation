@@ -1311,7 +1311,7 @@
   <div class="transport-item">
     <p class="transport-label" data-i18n="transportBus">🚌 버스</p>
     <p class="transport-desc" data-i18n="transportBusDesc">간선버스 105, 463 명동역 7번 출구 하차</p>
-    <p class="transport-desc ko-only">대절버스<br>순천 : 순천 7시 출발<br>안산 : 안산역 11시 출발</p>
+    <p class="transport-desc ko-only">대절버스<br>- 순천 : 순천역 7시 출발<br>- 안산 : 안산역 11시 출발</p>
   </div>
   <div class="transport-item">
     <p class="transport-label" data-i18n="transportCar">🚗 자가용</p>
@@ -1856,9 +1856,11 @@ https://drive.google.com/file/d/1Daj9wrFQQIS8VVmTjlX76xfudfQUjoFh/view?usp=shari
     return place ? (place.name[currentLang] || place.name.ko) : '';
   }
 
+  // 갤러리 그리드/카드에는 작은 썸네일(images/thumbs/)을 쓰고, 원본(images/gallery/)은 라이트박스에서만 불러온다.
   function coverSrc(img) {
     if (!img) return '';
-    return img.type === 'video' ? img.thumb : img.src;
+    if (img.type === 'video') return img.thumb;
+    return img.src.replace(/^images\/gallery\//, 'images/thumbs/');
   }
 
   function toggleJourney(placeId) {
@@ -1919,7 +1921,7 @@ https://drive.google.com/file/d/1Daj9wrFQQIS8VVmTjlX76xfudfQUjoFh/view?usp=shari
         const src = coverSrc(img);
         const clickAttr = place.id === 'laluce' ? '' : ` onclick="event.stopPropagation(); openLightbox('${place.id}', ${i})"`;
         return `<div class="gallery-item"${clickAttr}>
-          <img src="${src}" alt="${img.alt || t('galleryAlt') + ' ' + (i + 1)}" loading="${pi === 0 && i === 0 ? 'eager' : 'lazy'}">
+          <img src="${src}" alt="${img.alt || t('galleryAlt') + ' ' + (i + 1)}" loading="${pi === 0 ? 'eager' : 'lazy'}"${pi === 0 ? ' fetchpriority="low"' : ''}>
         </div>`;
       }).join('');
 
@@ -2029,6 +2031,11 @@ https://drive.google.com/file/d/1Daj9wrFQQIS8VVmTjlX76xfudfQUjoFh/view?usp=shari
       lightboxVideo.load();
       lightboxImg.style.display = '';
       lightboxImg.src = data.src;
+      // 앞뒤 사진 원본을 미리 받아두어 넘길 때 바로 뜨게 한다.
+      [lightboxIndex - 1, lightboxIndex + 1].forEach(n => {
+        const nb = lightboxItems[n];
+        if (nb && nb.type !== 'video') new Image().src = nb.src;
+      });
       lightboxImg.alt = data.alt;
       // 가로든 세로든 화면에 꽉 차는 쪽에 맞춰 원본 비율대로 보여줍니다.
       lightboxImg.style.width = '';
