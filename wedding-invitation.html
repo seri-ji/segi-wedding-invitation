@@ -672,6 +672,45 @@
     color: var(--muted);
   }
 
+  .bus-charter {
+    margin-top: 12px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--muted);
+  }
+
+  .bus-charter-title {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .bus-route {
+    padding: 6px 0 6px 12px;
+    border-left: 2px solid rgba(184, 147, 106, 0.5);
+    margin-bottom: 8px;
+  }
+
+  .bus-route-head { color: var(--deep); }
+
+  .bus-city {
+    font-weight: 500;
+    margin-right: 8px;
+  }
+
+  .bus-route-sub {
+    font-size: 12.5px;
+    color: var(--muted);
+  }
+
+  .bus-note {
+    font-size: 12px;
+    margin-top: 4px;
+  }
+
   .bus-map-link {
     color: var(--gold);
     text-decoration: underline;
@@ -1326,7 +1365,18 @@
   <div class="transport-item">
     <p class="transport-label" data-i18n="transportBus">🚌 버스</p>
     <p class="transport-desc" data-i18n="transportBusDesc">간선버스 105, 463 명동역 7번 출구 하차</p>
-    <p class="transport-desc ko-only">대절버스<br>- 순천 : 7시 출발<br>- 화성 : 11시 출발 (장안8리 장안중앙교회 앞) <a class="bus-map-link" href="https://naver.me/xtNBgZis" target="_blank" rel="noopener">네이버지도</a><br>- 인솔자 : 한명현 010-8774-1424<br>* 정확한 출발장소 및 인솔자 연락처는 12월 초 업데이트 예정입니다</p>
+    <div class="bus-charter ko-only">
+      <p class="bus-charter-title">대절버스</p>
+      <div class="bus-route">
+        <p class="bus-route-head"><span class="bus-city">순천</span><span class="bus-time">7시 출발</span></p>
+      </div>
+      <div class="bus-route">
+        <p class="bus-route-head"><span class="bus-city">화성</span><span class="bus-time">11시 출발</span></p>
+        <p class="bus-route-sub">장안8리 장안중앙교회 앞 <a class="bus-map-link" href="https://naver.me/xtNBgZis" target="_blank" rel="noopener">네이버지도</a></p>
+        <p class="bus-route-sub">(인솔자 : 한명현 010-8774-1424)</p>
+      </div>
+      <p class="bus-note">* 정확한 출발장소 및 인솔자 연락처는 12월 초 업데이트 예정입니다</p>
+    </div>
   </div>
   <div class="transport-item">
     <p class="transport-label" data-i18n="transportCar">🚗 자가용</p>
